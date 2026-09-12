@@ -1,0 +1,71 @@
+{
+  "design": {
+    "hero": {
+      "title": { "hy": "Դիզայն, որը սահմանում է ապագան", "en": "Design that defines the future" },
+      "subtitle": { "hy": "Դիզայն", "en": "Design" },
+      "imageUrl": "/images/global-rd/design.svg"
+    },
+    "sections": [
+      {
+        "heading": { "hy": "Դիզայն ֆիլոսոֆիա", "en": "Design philosophy" },
+        "body": {
+          "hy": "Մեր դիզայն թիմը հետապնդում է մեկ սկզբունք՝ ձև, որը հետևում է ֆունկցիային։ Ամեն գիծ ունի նպատակ՝ լինի դա աերոդինամիկ արդյունավետություն, թե ինտերիերի տարածքի օպտիմալացում։",
+          "en": "Our design team pursues one principle: form follows function. Every line has a purpose, whether it's aerodynamic efficiency or optimizing interior space."
+        }
+      },
+      {
+        "heading": { "hy": "Ինտերիերի փիլիսոփայություն", "en": "Interior philosophy" },
+        "body": {
+          "hy": "Խցիկը ձևավորված է որպես հանգիստ տարածք՝ ամբիենտ լուսավորությամբ, կայունության վրա հիմնված նյութերով և մինիմալիստական վահանակով, որը կենտրոնացած է վարորդի վրա։",
+          "en": "The cabin is designed as a calm space, with ambient lighting, sustainable materials, and a minimalist dashboard focused on the driver."
+        }
+      }
+    ]
+  },
+  "capability": {
+    "hero": {
+      "title": { "hy": "Ինժենիրինգային կարողություններ գլոբալ մասշտաբով", "en": "Engineering capability at global scale" },
+      "subtitle": { "hy": "Կարողություններ", "en": "Capability" },
+      "imageUrl": "/images/global-rd/capability.svg"
+    },
+    "sections": [
+      {
+        "heading": { "hy": "Ինտեգրված արտադրություն", "en": "Integrated manufacturing" },
+        "body": {
+          "hy": "Մեր արտադրական հարթակները միավորում են ճշգրիտ ինժեներիա և ավտոմատացված որակի վերահսկում՝ ամեն մեքենայի հետևողականություն ապահովելու համար։",
+          "en": "Our manufacturing platforms combine precision engineering and automated quality control to guarantee consistency across every vehicle."
+        }
+      },
+      {
+        "heading": { "hy": "Ծրագրաշարի հարթակ", "en": "Software platform" },
+        "body": {
+          "hy": "Մեր սեփական ծրագրաշարի հարթակը սահուն կերպով միավորում է կառավարումը, ինքնավար օգնականները և ընդմիշտ թարմացվող կապակցվածությունը։",
+          "en": "Our in-house software platform seamlessly unifies vehicle control, driver-assistance features, and always-on connectivity."
+        }
+      }
+    ]
+  },
+  "battery": {
+    "hero": {
+      "title": { "hy": "Հետագա սերնդի մարտկոցի տեխնոլոգիա", "en": "Next-generation battery technology" },
+      "subtitle": { "hy": "Մարտկոց", "en": "Battery" },
+      "imageUrl": "/images/global-rd/battery.svg"
+    },
+    "sections": [
+      {
+        "heading": { "hy": "Բջիջների քիմիա", "en": "Cell chemistry" },
+        "body": {
+          "hy": "Համագործակցելով առաջատար բջիջների մատակարարների հետ, մենք զարգացնում ենք բարձր խտության քիմիա, որը մեծացնում է հեռահարությունը՝ առանց փոխզիջելու անվտանգությունը։",
+          "en": "In partnership with leading cell suppliers, we develop high-density chemistry that extends range without compromising safety."
+        }
+      },
+      {
+        "heading": { "hy": "Անվտանգություն և կայունություն", "en": "Safety and longevity" },
+        "body": {
+          "hy": "Ամեն մարտկոցի փաթեթ անցնում է լայնածավալ ջերմային և բախման փորձարկումներ՝ ապահովելու տասնամյակների հուսալի աշխատանք։",
+          "en": "Every battery pack undergoes extensive thermal and crash testing to ensure decades of reliable performance."
+        }
+      }
+    ]
+  }
+}

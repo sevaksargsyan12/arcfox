@@ -1,0 +1,99 @@
+{
+  "categories": [
+    { "id": "company", "label": { "hy": "Ընկերություն", "en": "Company" } },
+    { "id": "product", "label": { "hy": "Մոդելներ", "en": "Product" } },
+    { "id": "events", "label": { "hy": "Իրադարձություններ", "en": "Events" } }
+  ],
+  "items": [
+    {
+      "id": "6",
+      "categoryId": "product",
+      "featured": true,
+      "publishedAt": "2026-08-18",
+      "title": { "hy": "Ներկայացվեց Veylor Nova ֆլագմանական մոդելը", "en": "Veylor Nova flagship unveiled" },
+      "summary": {
+        "hy": "Veylor-ը ներկայացրեց իր ամենավառ մոդելը՝ Nova-ն, երկուշարժիչ պերֆորմանսով և ֆուտուրիստական դիզայնով։",
+        "en": "Veylor unveiled its boldest model yet, the Nova, with dual-motor performance and a futuristic design language."
+      },
+      "contentHtml": {
+        "hy": "<p>Veylor-ը այսօր պաշտոնապես ներկայացրեց Nova ֆլագմանական մոդելը՝ ապրանքանիշի ամենավառ տեխնոլոգիական և դիզայնի արտահայտությունը։</p><p>Nova-ն համատեղում է երկուշարժիչ պերֆորմանսը, 580 կմ հեռահարությունը և ինտերիեր, որը սահմանում է նոր չափանիշ ամբիենտ լուսավորության և պրեմիում նյութերի համար։</p><h2>Հասանելիություն</h2><p>Պատվերների ընդունումը կսկսվի ընթացիկ եռամսյակի ընթացքում ընտրված շուկաներում։</p>",
+        "en": "<p>Veylor today officially unveiled the Nova, the brand's boldest expression of technology and design to date.</p><p>Nova combines dual-motor performance, 580 km of range, and an interior that sets a new benchmark for ambient lighting and premium materials.</p><h2>Availability</h2><p>Order books open in select markets later this quarter.</p>"
+      }
+    },
+    {
+      "id": "5",
+      "categoryId": "company",
+      "featured": true,
+      "publishedAt": "2026-07-30",
+      "title": { "hy": "Veylor-ը բացում է նոր հետազոտական կենտրոն", "en": "Veylor opens new R&D center" },
+      "summary": {
+        "hy": "Նոր գլոբալ R&D կենտրոնը կկենտրոնանա մարտկոցի տեխնոլոգիաների և ինքնավար կառավարման վրա։",
+        "en": "The new global R&D center will focus on battery technology and autonomous driving capability."
+      },
+      "contentHtml": {
+        "hy": "<p>Veylor-ը հայտարարեց նոր հետազոտության և զարգացման կենտրոնի բացման մասին, որը կկենտրոնանա հետագա սերնդի մարտկոցի քիմիայի և ինքնավար կառավարման ծրագրաշարի վրա։</p><p>Կենտրոնը կստեղծի հարյուրավոր ինժեներական աշխատատեղեր առաջիկա երկու տարիների ընթացքում։</p>",
+        "en": "<p>Veylor announced the opening of a new research and development center focused on next-generation battery chemistry and autonomous-driving software.</p><p>The center will create hundreds of engineering roles over the next two years.</p>"
+      }
+    },
+    {
+      "id": "4",
+      "categoryId": "events",
+      "featured": false,
+      "publishedAt": "2026-06-12",
+      "title": { "hy": "Veylor-ը մասնակցում է միջազգային ավտոսալոնին", "en": "Veylor at the international motor show" },
+      "summary": {
+        "hy": "Ապրանքանիշը ցուցադրում է ողջ մոդելային շարքը այս տարվա ավտոսալոնում։",
+        "en": "The brand showcases its full model line-up at this year's motor show."
+      },
+      "contentHtml": {
+        "hy": "<p>Veylor-ի տաղավարը այս տարվա ավտոսալոնում ցուցադրում է ողջ մոդելային շարքը, One-ից մինչև Nova, ինտերակտիվ կոնֆիգուրատորով։</p>",
+        "en": "<p>Veylor's stand at this year's motor show showcases the full model line-up, from the One to the Nova, with an interactive configurator.</p>"
+      }
+    },
+    {
+      "id": "3",
+      "categoryId": "product",
+      "featured": false,
+      "publishedAt": "2026-05-02",
+      "title": { "hy": "Veylor Terra-ն ստանում է թարմացված մարտկոց", "en": "Veylor Terra gets an updated battery pack" },
+      "summary": {
+        "hy": "Թարմացված մարտկոցի փաթեթը մեծացնում է հեռահարությունը՝ առանց փոփոխելու գինը։",
+        "en": "An updated battery pack increases range without changing the price."
+      },
+      "contentHtml": {
+        "hy": "<p>Veylor Terra-ի 2026 մոդելային տարվա թարմացումը ներառում է նոր բջիջների քիմիա, որը հեռահարությունը մեծացնում է մինչև 540 կմ։</p>",
+        "en": "<p>The 2026 model-year update to the Veylor Terra introduces a new cell chemistry that raises range to up to 540 km.</p>"
+      }
+    },
+    {
+      "id": "2",
+      "categoryId": "company",
+      "featured": false,
+      "publishedAt": "2026-03-21",
+      "title": { "hy": "Veylor-ը ընդլայնում է դիլերային ցանցը", "en": "Veylor expands its dealer network" },
+      "summary": {
+        "hy": "Ապրանքանիշը հայտարարում է նոր վաճառքի կենտրոնների բացման մասին մի քանի շուկաներում։",
+        "en": "The brand announces new sales centers opening across several markets."
+      },
+      "contentHtml": {
+        "hy": "<p>Veylor-ը շարունակում է իր գլոբալ ընդլայնումը՝ բացելով նոր վաճառքի և սպասարկման կենտրոններ մի քանի շուկաներում ընթացիկ տարվա ընթացքում։</p>",
+        "en": "<p>Veylor continues its global expansion, opening new sales and service centers in several markets throughout the year.</p>"
+      }
+    },
+    {
+      "id": "1",
+      "categoryId": "events",
+      "featured": false,
+      "publishedAt": "2026-02-08",
+      "title": { "hy": "Veylor One-ը ստանում է դիզայնի մրցանակ", "en": "Veylor One wins design award" },
+      "summary": {
+        "hy": "Կոմպակտ քաղաքային մեքենան ճանաչվում է իր ինտերիերի դիզայնի համար։",
+        "en": "The compact city car is recognized for its interior design."
+      },
+      "contentHtml": {
+        "hy": "<p>Veylor One-ը արժանացավ միջազգային դիզայնի մրցանակի՝ իր մինիմալիստական ինտերիերի և կայունության վրա հիմնված նյութերի կիրառման համար։</p>",
+        "en": "<p>The Veylor One received an international design award for its minimalist interior and use of sustainable materials.</p>"
+      }
+    }
+  ]
+}

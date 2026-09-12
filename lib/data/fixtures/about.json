@@ -1,0 +1,78 @@
+{
+  "overview": {
+    "hero": {
+      "title": { "hy": "Մենք ստեղծում ենք էլեկտրական շարժման նոր սերունդ", "en": "We're building the next generation of electric mobility" },
+      "subtitle": { "hy": "Veylor-ի մասին", "en": "About Veylor" },
+      "imageUrl": "/images/about/hero.svg"
+    },
+    "sections": [
+      {
+        "heading": { "hy": "Մեր առաքելությունը", "en": "Our mission" },
+        "body": {
+          "hy": "Veylor-ը ստեղծվել է մեկ նպատակով՝ դարձնել էլեկտրական մեքենաները հասանելի, հուսալի և ցանկալի՝ առանց փոխզիջումների դիզայնի կամ տեխնոլոգիայի հարցում։ Ամեն մոդել ձևավորվում է իրական վարորդների կարիքների շուրջ, ոչ թե հակառակը։",
+          "en": "Veylor was founded with a single purpose: make electric cars accessible, dependable, and genuinely desirable, without compromising on design or technology. Every model is shaped around real drivers' needs, not the other way around."
+        }
+      },
+      {
+        "heading": { "hy": "Դիզայն, որը մնում է", "en": "Design that lasts" },
+        "body": {
+          "hy": "Մեր դիզայն թիմը հավատում է ժամանակավրեպ ձևերին՝ մաքուր մակերևույթներ, ուշադիր համամասնություններ և ինտերիերներ, որոնք առաջնահերթություն են տալիս մարդուն։ Տեխնոլոգիան երբեք չպետք է գերակայի փորձառության վրա։",
+          "en": "Our design team believes in shapes that outlast trends: clean surfaces, careful proportions, and interiors that put people first. Technology should never overshadow the experience of driving."
+        }
+      },
+      {
+        "heading": { "hy": "Կայունության պարտավորություն", "en": "A commitment to sustainability" },
+        "body": {
+          "hy": "Ամեն Veylor մեքենա նվազագույնի է հասցնում իր ազդեցությունը ողջ կյանքի ցիկլում՝ վերականգնված նյութերից մինչև մարտկոցի վերամշակման ծրագրեր։",
+          "en": "Every Veylor vehicle minimizes its footprint across its full life cycle, from recycled materials to battery recycling programs."
+        }
+      }
+    ],
+    "stats": [
+      { "value": "4", "label": { "hy": "Մոդելային շարք", "en": "Models in the line-up" } },
+      { "value": "18+", "label": { "hy": "Երկիր", "en": "Countries" } },
+      { "value": "2019", "label": { "hy": "Հիմնադրման տարի", "en": "Founded" } }
+    ]
+  },
+  "partners": {
+    "hero": {
+      "title": { "hy": "Գործընկերներ, ինչպես ամեն մեծ գաղափար", "en": "Partners behind every great idea" },
+      "subtitle": { "hy": "Համագործակցություն", "en": "Partnerships" },
+      "imageUrl": "/images/partners/hero.svg"
+    },
+    "intro": {
+      "heading": { "hy": "Կառուցելով միասին", "en": "Building together" },
+      "body": {
+        "hy": "Veylor-ի յուրաքանչյուր մեքենայի հետևում կանգնած է գործընկերների ցանց, որոնք բերում են խորը փորձառություն մարտկոցի տեխնոլոգիաներից մինչև ինքնավար կառավարման ծրագրաշար։",
+        "en": "Behind every Veylor vehicle stands a network of partners bringing deep expertise, from battery technology to autonomous-driving software."
+      }
+    },
+    "list": [
+      {
+        "name": "NorthGrid Battery Systems",
+        "description": {
+          "hy": "Առաջատար բարձր խտության բատերիաների բջիջների մատակարար, որի հետ Veylor-ը համագործակցում է 2020 թվականից։",
+          "en": "A leading high-density battery cell supplier, partnered with Veylor since 2020."
+        }
+      },
+      {
+        "name": "Atlas Dynamics",
+        "description": {
+          "hy": "Ինքնավար կառավարման ծրագրաշարի և ընկալման ալգորիթմների մասնագիտացված գործընկեր։",
+          "en": "A specialist partner for autonomous-driving software and perception algorithms."
+        }
+      }
+    ],
+    "cooperationHistory": {
+      "NorthGrid Battery Systems": [
+        { "year": "2020", "label": { "hy": "Ստրատեգիական համագործակցության մեկնարկ", "en": "Strategic partnership begins" } },
+        { "year": "2022", "label": { "hy": "Համատեղ մարտկոցի հետազոտական լաբորատորիա", "en": "Joint battery research lab opens" } },
+        { "year": "2025", "label": { "hy": "Հետագա սերնդի բջիջների քիմիա", "en": "Next-generation cell chemistry launches" } }
+      ],
+      "Atlas Dynamics": [
+        { "year": "2021", "label": { "hy": "Ծրագրաշարի համագործակցության մեկնարկ", "en": "Software partnership begins" } },
+        { "year": "2024", "label": { "hy": "Ընկալման հարթակի համատեղ թողարկում", "en": "Joint perception platform launches" } }
+      ]
+    }
+  }
+}

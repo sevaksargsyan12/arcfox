@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens extracted from the reference project's tailwind.config.js /
+ * app/assets/scss/variables.scss, translated into Tailwind v4's CSS-first
+ * theme. This single block is the one source of truth for color, font and
+ * breakpoint tokens -- replacing the reference's duplicated Tailwind-config
+ * + SCSS-variable breakpoint system.
+ */
+@theme {
+  --color-brand-blue: #3ea3d7;
+  --color-brand-blue-dark: #2f83b1;
+  --color-ink: #000000;
+  --color-charcoal-900: #1c1e21;
+  --color-charcoal-800: #34393e;
+  --color-charcoal-700: #393a3e;
+  --color-charcoal-600: #474c52;
+  --color-charcoal-500: #585858;
+  --color-form-bg: #f8f8f8;
+  --color-accent-gold: #f8d193;
+  --color-accent-gold-dark: #ce953b;
+
+  --font-display: var(--font-locale-display), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-locale-body), ui-sans-serif, system-ui, sans-serif;
+
+  /*
+   * Breakpoint values kept identical to the reference (768 / 992 / 1200 /
+   * 1920 / 2560) for visual parity. 1200px ("md" here) is the dominant
+   * mobile-drawer-nav vs desktop-nav swap point, not the more common 1024px.
+   */
+  --breakpoint-xs: 768px;
+  --breakpoint-sm: 992px;
+  --breakpoint-md: 1200px;
+  --breakpoint-lg: 1920px;
+  --breakpoint-xl: 2560px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .container-max {
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  .container-wide {
+    max-width: 1680px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    background-color: var(--color-brand-blue);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    transition:
+      background-color 0.2s ease,
+      gap 0.2s ease,
+      transform 0.15s ease;
+  }
+
+  .btn:hover {
+    background-color: var(--color-brand-blue-dark);
+    gap: 0.75rem;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid currentColor;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-outline:hover {
+    background-color: rgb(255 255 255 / 0.12);
+  }
+
+  .g-html {
+    line-height: 1.7;
+  }
+
+  .g-html p {
+    margin-bottom: 1em;
+  }
+
+  .g-html h2 {
+    font-size: 1.5rem;
+    margin: 1.5em 0 0.5em;
+  }
+
+  .g-html ul {
+    list-style: disc;
+    padding-inline-start: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  .field-input {
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    border: 1px solid rgb(0 0 0 / 0.12);
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-brand-blue);
+  }
+
+  .field-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: var(--color-charcoal-600);
+  }
+
+  .field-error {
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    color: #d64545;
+  }
+}

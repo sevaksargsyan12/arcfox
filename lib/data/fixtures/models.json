@@ -1,0 +1,210 @@
+[
+  {
+    "slug": "one",
+    "name": "Veylor One",
+    "tagline": {
+      "hy": "Կոմպակտ էլեկտրական քաղաքային մեքենա",
+      "en": "The compact electric city car"
+    },
+    "description": {
+      "hy": "Veylor One-ը ստեղծված է քաղաքային կյանքի համար՝ կոմպակտ չափսեր, թեթև կառավարում և տեղական զրո արտանետումներ։ Իդեալական է առաջին էլեկտրական մեքենայի համար։",
+      "en": "Veylor One is built for city life: compact dimensions, effortless handling, and zero local emissions. The ideal first electric car."
+    },
+    "bodyType": { "hy": "Կոմպակտ", "en": "Compact hatchback" },
+    "colors": [
+      {
+        "key": "arctic-white",
+        "label": { "hy": "Արկտիկական սպիտակ", "en": "Arctic White" },
+        "hex": "#F2F3F5"
+      },
+      {
+        "key": "graphite-blue",
+        "label": { "hy": "Գրաֆիտ կապույտ", "en": "Graphite Blue" },
+        "hex": "#2F3A45"
+      }
+    ],
+    "specs": { "lengthMm": 4200, "widthMm": 1850, "heightMm": 1550, "wheelbaseMm": 2650 },
+    "featureHighlights": [
+      {
+        "icon": "battery",
+        "title": { "hy": "420 կմ հեռահարություն", "en": "420 km range" },
+        "description": {
+          "hy": "Մեկ լիցքավորումով բավարար հեռահարություն ամենօրյա շարժման համար։",
+          "en": "Plenty of range for everyday driving on a single charge."
+        }
+      },
+      {
+        "icon": "zap",
+        "title": { "hy": "Արագ լիցքավորում", "en": "Fast charging" },
+        "description": {
+          "hy": "10-ից 80% լիցքավորում 28 րոպեում DC արագ լիցքակալիչով։",
+          "en": "10-80% in 28 minutes on a DC fast charger."
+        }
+      },
+      {
+        "icon": "shield-check",
+        "title": { "hy": "5 աստղ անվտանգություն", "en": "5-star safety" },
+        "description": {
+          "hy": "Ամբողջական ակտիվ անվտանգության փաթեթ ամեն մոդիֆիկացիայում։",
+          "en": "Full active-safety suite standard on every trim."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "aero",
+    "name": "Veylor Aero",
+    "tagline": {
+      "hy": "Աերոդինամիկ սեդան հեռահար ուղևորությունների համար",
+      "en": "The aerodynamic sedan for long-distance travel"
+    },
+    "description": {
+      "hy": "Veylor Aero-ը միավորում է ցածր օդադիմադրությունը, հանգիստ խցիկը և մեծ հեռահարությունը՝ դառնալով լավագույն ընտրանքը միջքաղաքային երթևեկության համար։",
+      "en": "Veylor Aero combines a low drag coefficient, a quiet cabin, and long range to make it the natural choice for intercity travel."
+    },
+    "bodyType": { "hy": "Սեդան", "en": "Sedan" },
+    "colors": [
+      {
+        "key": "pearl-silver",
+        "label": { "hy": "Մարգարիտ արծաթ", "en": "Pearl Silver" },
+        "hex": "#C9CDD1"
+      },
+      {
+        "key": "midnight-teal",
+        "label": { "hy": "Գիշերային փիրուզագույն", "en": "Midnight Teal" },
+        "hex": "#14475F"
+      }
+    ],
+    "specs": { "lengthMm": 4900, "widthMm": 1950, "heightMm": 1450, "wheelbaseMm": 2950 },
+    "featureHighlights": [
+      {
+        "icon": "battery",
+        "title": { "hy": "610 կմ հեռահարություն", "en": "610 km range" },
+        "description": {
+          "hy": "Ամենամեծ հեռահարությունը մեր գծում՝ երկար ուղևորությունների համար։",
+          "en": "The longest range in the line-up, built for the open road."
+        }
+      },
+      {
+        "icon": "wind",
+        "title": { "hy": "0.21 Cd աերոդինամիկա", "en": "0.21 Cd aerodynamics" },
+        "description": {
+          "hy": "Ուսումնասիրված ձև, որը նվազագույնի է հասցնում էներգիայի կորուստը։",
+          "en": "A sculpted shape that minimizes energy loss at speed."
+        }
+      },
+      {
+        "icon": "volume-x",
+        "title": { "hy": "Հանգիստ խցիկ", "en": "Whisper-quiet cabin" },
+        "description": {
+          "hy": "Ակտիվ աղմուկի չեղարկում և եռաշերտ ապակիներ։",
+          "en": "Active noise cancellation and triple-layer acoustic glass."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "terra",
+    "name": "Veylor Terra",
+    "tagline": {
+      "hy": "Ընտանեկան էլեկտրական SUV՝ ամեն օրվա համար",
+      "en": "The family electric SUV for every day"
+    },
+    "description": {
+      "hy": "Veylor Terra-ն առաջարկում է լայն սալոն, բարձր նստատեղ և ամրապնդված ինտելեկտուալ բոլոր անիվների կառավարում՝ ընտանիքի ամեն արկածի համար։",
+      "en": "Veylor Terra offers a spacious cabin, a commanding seating position, and intelligent all-wheel drive, ready for every family adventure."
+    },
+    "bodyType": { "hy": "SUV", "en": "SUV" },
+    "colors": [
+      {
+        "key": "dune-beige",
+        "label": { "hy": "Ավազադաշտի բեժ", "en": "Dune Beige" },
+        "hex": "#C9A874"
+      },
+      {
+        "key": "forest-green",
+        "label": { "hy": "Անտառային կանաչ", "en": "Forest Green" },
+        "hex": "#2F4A3E"
+      }
+    ],
+    "specs": { "lengthMm": 4750, "widthMm": 1980, "heightMm": 1680, "wheelbaseMm": 2900 },
+    "featureHighlights": [
+      {
+        "icon": "battery",
+        "title": { "hy": "540 կմ հեռահարություն", "en": "540 km range" },
+        "description": {
+          "hy": "Ամրապնդված մարտկոցի փաթեթ, հարմար ընտանեկան ուղևորությունների համար։",
+          "en": "A reinforced battery pack sized right for family road trips."
+        }
+      },
+      {
+        "icon": "boxes",
+        "title": { "hy": "1780 լ բեռնախորշ", "en": "1780 L of cargo space" },
+        "description": {
+          "hy": "Ընդարձակվող բեռնախորշ՝ ամեն արկածի պիտույքների համար։",
+          "en": "Expandable cargo room for every kind of gear."
+        }
+      },
+      {
+        "icon": "shield-check",
+        "title": { "hy": "Ամբողջական բոլոր անիվների կառավարում", "en": "Full-time all-wheel drive" },
+        "description": {
+          "hy": "Երկու շարժիչ, ինտելեկտուալ բաշխում, ամուր բռնում ամեն մակերևույթի վրա։",
+          "en": "Dual motors with intelligent torque distribution for confident grip."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "nova",
+    "name": "Veylor Nova",
+    "tagline": {
+      "hy": "Ֆլագմանական էլեկտրական պերֆորմանս",
+      "en": "The flagship electric performance statement"
+    },
+    "description": {
+      "hy": "Veylor Nova-ն ապրանքանիշի ամենավառ արտահայտությունն է՝ երկուշարժիչ պերֆորմանս, ֆուտուրիստական դիզայն և ինտերիեր, որը սահմանում է նոր չափանիշ։",
+      "en": "Veylor Nova is the brand's boldest statement: dual-motor performance, futuristic design, and an interior that sets a new benchmark."
+    },
+    "bodyType": { "hy": "Ֆլագմանական ֆասթբեք", "en": "Flagship fastback" },
+    "colors": [
+      {
+        "key": "solar-gold",
+        "label": { "hy": "Արևային ոսկեգույն", "en": "Solar Gold" },
+        "hex": "#CE953B"
+      },
+      {
+        "key": "obsidian-black",
+        "label": { "hy": "Օբսիդիան սև", "en": "Obsidian Black" },
+        "hex": "#101214"
+      }
+    ],
+    "specs": { "lengthMm": 4850, "widthMm": 2000, "heightMm": 1350, "wheelbaseMm": 2920 },
+    "featureHighlights": [
+      {
+        "icon": "gauge",
+        "title": { "hy": "0-100 կմ/ժ 3.4 վրկ-ում", "en": "0-100 km/h in 3.4s" },
+        "description": {
+          "hy": "Երկուշարժիչ պերֆորմանս՝ ակնթարթային արագացումով։",
+          "en": "Dual-motor performance with instant, seamless acceleration."
+        }
+      },
+      {
+        "icon": "battery",
+        "title": { "hy": "580 կմ հեռահարություն", "en": "580 km range" },
+        "description": {
+          "hy": "Պերֆորմանս, որը չի զոհաբերում հեռահարությունը։",
+          "en": "Performance that doesn't come at the expense of range."
+        }
+      },
+      {
+        "icon": "sparkles",
+        "title": { "hy": "Ֆուտուրիստական ինտերիեր", "en": "Futuristic interior" },
+        "description": {
+          "hy": "Մինիմալիստական խցիկ՝ ամբիենտ լուսավորությամբ և պրեմիում նյութերով։",
+          "en": "A minimalist cabin with ambient lighting and premium materials."
+        }
+      }
+    ]
+  }
+]
