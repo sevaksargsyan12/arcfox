@@ -9,12 +9,10 @@
     "buttons": {
       "learnMore": "Learn more",
       "viewDetails": "View details",
-      "apply": "Apply",
       "submit": "Submit",
       "sending": "Sending...",
       "close": "Close",
       "seeAll": "See all",
-      "bookTestDrive": "Book a test drive",
       "readMore": "Read more",
       "backToList": "Back to list",
       "download": "Download"
@@ -31,8 +29,6 @@
       "capability": "Capability",
       "battery": "Battery",
       "news": "News",
-      "careers": "Careers",
-      "testDrive": "Test Drive",
       "contact": "Contact"
     },
     "languageSwitcher": { "label": "Language" }
@@ -47,9 +43,7 @@
       "partners": "Partners",
       "globalRd": "Global R&D",
       "news": "News",
-      "careers": "Careers",
       "support": "Support",
-      "testDrive": "Test Drive",
       "contact": "Contact",
       "legal": "Legal",
       "privacy": "Privacy Statement",
@@ -76,14 +70,14 @@
     "galleryTitle": "Exterior",
     "interiorTitle": "Interior",
     "featuresTitle": "Features",
-    "specSheetCta": "Technical specifications",
-    "bookTestDriveCta": "Book a test drive"
+    "specSheetCta": "Technical specifications"
   },
   "about": {
     "pageTitle": "About Veylor"
   },
   "partners": {
     "pageTitle": "Partners",
+    "gridTitle": "World-Class Partners",
     "timelineTitle": "Cooperation history"
   },
   "globalRd": {
@@ -97,51 +91,6 @@
     "filterAll": "All",
     "empty": "No news items in this category.",
     "publishedOn": "Published on"
-  },
-  "careers": {
-    "pageTitle": "Careers",
-    "subtitle": "Join the team shaping the future of electric mobility.",
-    "filterCategory": "All departments",
-    "filterArea": "All locations",
-    "tableTitle": "Position",
-    "tableNature": "Type",
-    "tableNumber": "Openings",
-    "tableLocation": "Location",
-    "empty": "No openings match these filters.",
-    "detail": {
-      "locationLabel": "Location",
-      "descriptionTitle": "Job description",
-      "applyCta": "Apply for this role"
-    },
-    "form": {
-      "title": "Apply for this role",
-      "fullName": "Full name",
-      "nationality": "Nationality",
-      "email": "Email",
-      "phone": "Phone",
-      "currentCountry": "Current country",
-      "currentCompany": "Current company",
-      "resume": "Resume / CV",
-      "resumeHint": "PDF, DOC or DOCX, up to 10 MB",
-      "resumeChoose": "Choose file",
-      "resumeNone": "No file selected"
-    }
-  },
-  "testDrive": {
-    "pageTitle": "Book a test drive",
-    "subtitle": "Schedule a test drive at your nearest Veylor sales center.",
-    "step1Title": "Step 1", "step1Desc": "Your details",
-    "step2Title": "Step 2", "step2Desc": "Choose a model",
-    "step3Title": "Step 3", "step3Desc": "Confirm your booking",
-    "form": {
-      "country": "Country / region",
-      "gender": "Title",
-      "name": "Full name",
-      "phone": "Phone",
-      "email": "Email"
-    },
-    "next": "Next",
-    "back": "Back"
   },
   "contact": {
     "pageTitle": "Contact Us",
@@ -173,8 +122,7 @@
     "validation": {
       "required": "This field is required",
       "invalidEmail": "Please enter a valid email address",
-      "invalidPhone": "Please enter a valid phone number",
-      "fileRequired": "Please attach a file"
+      "invalidPhone": "Please enter a valid phone number"
     }
   },
   "notFound": {

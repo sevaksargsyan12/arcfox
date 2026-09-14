@@ -8,7 +8,6 @@ import { SpecsGrid } from "@/components/models/detail/SpecsGrid";
 import { ExteriorGallery } from "@/components/models/detail/ExteriorGallery";
 import { InteriorGallery } from "@/components/models/detail/InteriorGallery";
 import { FeatureHighlights } from "@/components/models/detail/FeatureHighlights";
-import { Link } from "@/i18n/navigation";
 
 export async function generateStaticParams() {
   const slugs = await getModelSlugs();
@@ -35,10 +34,9 @@ export default async function ModelDetailPage({
   setRequestLocale(locale);
   const typedLocale = locale as Locale;
 
-  const [model, t, tCommon] = await Promise.all([
+  const [model, t] = await Promise.all([
     getModelBySlug(slug, typedLocale),
     getTranslations({ locale, namespace: "models" }),
-    getTranslations({ locale, namespace: "common.buttons" }),
   ]);
 
   if (!model) {
@@ -52,7 +50,6 @@ export default async function ModelDetailPage({
         name={model.name}
         tagline={model.tagline}
         bodyType={model.bodyType}
-        testDriveCta={t("bookTestDriveCta")}
       />
 
       <div className="container-max flex flex-col gap-16 py-16 md:gap-24 md:py-24">
@@ -88,9 +85,6 @@ export default async function ModelDetailPage({
           <a href={model.specSheet.anchor} className="btn-outline">
             {t("specSheetCta")}
           </a>
-          <Link href="/test-drive" className="btn">
-            {tCommon("bookTestDrive")}
-          </Link>
         </div>
       </div>
     </>

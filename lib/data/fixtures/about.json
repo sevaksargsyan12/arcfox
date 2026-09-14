@@ -49,29 +49,143 @@
     },
     "list": [
       {
-        "name": "NorthGrid Battery Systems",
+        "name": "MAGNA",
         "description": {
-          "hy": "Առաջատար բարձր խտության բատերիաների բջիջների մատակարար, որի հետ Veylor-ը համագործակցում է 2020 թվականից։",
-          "en": "A leading high-density battery cell supplier, partnered with Veylor since 2020."
+          "hy": "Երկարաժամկետ արտադրական գործընկեր, որի հետ համատեղ ձեռնարկության գործարանում արտադրվում են մեր բարձրակարգ էլեկտրական մեքենաները։",
+          "en": "Long-term manufacturing partner behind the joint-venture plant that builds our high-end electric vehicles."
         }
       },
       {
-        "name": "Atlas Dynamics",
+        "name": "HUAWEI",
         "description": {
-          "hy": "Ինքնավար կառավարման ծրագրաշարի և ընկալման ալգորիթմների մասնագիտացված գործընկեր։",
-          "en": "A specialist partner for autonomous-driving software and perception algorithms."
+          "hy": "Տեխնոլոգիական գործընկեր մեքենայի կապակցվածության և արագ լիցքավորման համակարգերի ոլորտում՝ դեռևս մեր առաջին լիարժեք էլեկտրական մոդելներից։",
+          "en": "Technology partner for in-car connectivity and fast-charging systems, going back to our first fully electric models."
+        }
+      },
+      {
+        "name": "BAIDU",
+        "description": {
+          "hy": "Ծրագրային գործընկեր, որը զարգացնում է հետագա սերնդի ինքնավար կառավարման տեխնոլոգիաներ մեր համաձայն օգտագործման էլեկտրական մեքենաների համար։",
+          "en": "Software partner developing next-generation autonomous-driving capability for our shared-mobility electric vehicles."
+        }
+      },
+      {
+        "name": "AUTOLIV",
+        "description": {
+          "hy": "Անվտանգության գործընկեր, որի հետ համատեղ մշակում ենք առաջադեմ վարորդի աջակցության համակարգեր (ADAS) ավելի ապահով վարման փորձառության համար։",
+          "en": "Safety partner co-engineering our advanced driver-assistance systems (ADAS) for a more secure driving experience."
+        }
+      },
+      {
+        "name": "CATL",
+        "description": {
+          "hy": "Մարտկոցի բջիջների գործընկեր, որի հետ մեր ինժենիրինգային թիմը միասին հաղթահարում է էներգիայի պահպանման տեխնոլոգիայի հիմնական խնդիրները։",
+          "en": "Battery-cell partner working alongside our engineering team to push past core challenges in energy-storage technology."
+        }
+      },
+      {
+        "name": "BOSCH",
+        "description": {
+          "hy": "Երկարամյա բաղադրիչների գործընկեր, որի ներդրումն ավելի կատարյալ վարման փորձառություն է ապահովում մեր ողջ մոդելային շարքի համար։",
+          "en": "Long-standing components partner contributing to a more refined, complete driving experience across our line-up."
+        }
+      },
+      {
+        "name": "IPE, Chinese Academy of Sciences",
+        "description": {
+          "hy": "Գործընթացների ինժենիրինգի ինստիտուտի (Չինաստանի գիտությունների ակադեմիա) հետազոտական գործընկեր, որի նյութագիտական աշխատանքի շնորհիվ ստեղծվեց ֆորմալդեհիդից և բենզոլից զերծ խցիկ՝ արդյունաբերության մեջ առաջինը։",
+          "en": "Research partner from the Institute of Process Engineering, whose materials-science work helped us pioneer a cabin free of formaldehyde and benzene emissions -- a first for the industry."
         }
       }
     ],
     "cooperationHistory": {
-      "NorthGrid Battery Systems": [
-        { "year": "2020", "label": { "hy": "Ստրատեգիական համագործակցության մեկնարկ", "en": "Strategic partnership begins" } },
-        { "year": "2022", "label": { "hy": "Համատեղ մարտկոցի հետազոտական լաբորատորիա", "en": "Joint battery research lab opens" } },
-        { "year": "2025", "label": { "hy": "Հետագա սերնդի բջիջների քիմիա", "en": "Next-generation cell chemistry launches" } }
+      "HUAWEI": [
+        {
+          "year": "2017",
+          "label": {
+            "hy": "2017 թ. սեպտեմբերին կնքվեց Huawei-ի հետ առաջին ստրատեգիական համագործակցության համաձայնագիրը՝ ընդգրկելով համատեղ R&D, արտադրանքի նորարարություն և մեքենաների ինտելեկտուալացում։",
+            "en": "In September 2017, we signed our first strategic cooperation agreement with Huawei, covering joint R&D, product innovation, and intelligent-vehicle transformation."
+          }
+        },
+        {
+          "year": "2018",
+          "label": {
+            "hy": "2018 թ. նոյեմբերին նոր շրջանակային համաձայնագրով խորացվեց համագործակցությունը՝ կենտրոնացած ICT տեխնոլոգիաների և կապակցված մեքենաների զարգացման միավորման վրա։",
+            "en": "In November 2018, a new framework agreement deepened the partnership, focused on merging ICT technology with connected-vehicle development."
+          }
+        },
+        {
+          "year": "2019",
+          "label": {
+            "hy": "2019 թ. հունվարին Huawei-ի հետ համահիմնադրվեց «1873 Davison» նորարարական լաբորատորիան՝ հետագա սերնդի կապակցված էլեկտրական մեքենաների տեխնոլոգիաներ համատեղ մշակելու համար։",
+            "en": "In January 2019, we co-founded the \"1873 Davison Innovation Lab\" with Huawei to develop next-generation connected-EV technology together."
+          }
+        },
+        {
+          "year": "2020",
+          "label": {
+            "hy": "2020 թ. հոկտեմբերին թողարկվեց արտադրական մոդել, որը կառուցված է Huawei-ի մեքենայի կապակցվածության և էլեկտրական շարժիչի տեխնոլոգիաների հիման վրա։",
+            "en": "In October 2020, we launched a production model built on Huawei's in-car connectivity and electric-drive technology."
+          }
+        },
+        {
+          "year": "2021",
+          "label": {
+            "hy": "2021 թ. ապրիլին թողարկվեց ֆլագմանական մոդիֆիկացիա՝ որպես առաջին արտադրական մեքենան, որը հագեցած է Huawei-ի ամբողջական ինտելեկտուալ կառավարման համակարգով։",
+            "en": "In April 2021, we released a flagship trim as the first production vehicle equipped with Huawei's full-stack intelligent driving system."
+          }
+        }
       ],
-      "Atlas Dynamics": [
-        { "year": "2021", "label": { "hy": "Ծրագրաշարի համագործակցության մեկնարկ", "en": "Software partnership begins" } },
-        { "year": "2024", "label": { "hy": "Ընկալման հարթակի համատեղ թողարկում", "en": "Joint perception platform launches" } }
+      "MAGNA": [
+        {
+          "year": "2018",
+          "label": {
+            "hy": "2018 թ. ապրիլին կնքվեց ստրատեգիական համագործակցության համաձայնագիր Magna-ի հետ նոր ինտելեկտուալ էլեկտրական հարթակի համար. երկու ամիս անց հիմնվեց համատեղ ձեռնարկություն։",
+            "en": "In April 2018, we signed a strategic cooperation agreement with Magna for a new intelligent electric-vehicle platform; a joint venture followed two months later."
+          }
+        },
+        {
+          "year": "2019",
+          "label": {
+            "hy": "2019 թ. հունվարին ներկայացվեց IMC հարթակը՝ մեր սեփական էլեկտրական մեքենաների ինտելեկտուալ ճարտարապետությունը, աշխարհում առաջինը, որ ապահովում է 5G տեխնոլոգիա։",
+            "en": "In January 2019, we unveiled the IMC platform, our proprietary EV architecture and the world's first commercially deployed 5G-equipped intelligent platform."
+          }
+        },
+        {
+          "year": "2019",
+          "label": {
+            "hy": "Նույն ամսում Zhenjiang-ում (Չինաստան) բացվեց Magna-ի հետ համատեղ արտադրական բազան՝ Magna-ի առաջին գործարանը Եվրոպայից դուրս ամբողջական մեքենաների արտադրության համար։",
+            "en": "That same month, we opened the joint manufacturing base with Magna in Zhenjiang, China -- Magna's first wholly-outside-Europe vehicle plant."
+          }
+        },
+        {
+          "year": "2019",
+          "label": {
+            "hy": "2019 թ. դեկտեմբերի 30-ին նոր արտադրական բազայում գծից դուրս եկավ առաջին փորձնական արտադրության մեքենան։",
+            "en": "On December 30, 2019, the first pilot-production vehicle rolled off the line at the new manufacturing base."
+          }
+        },
+        {
+          "year": "2020",
+          "label": {
+            "hy": "2020 թ. սեպտեմբերի 30-ին նույն գործարանում սկսվեց մեր սեդանի լիարժեք արտադրությունը (SOP)։",
+            "en": "On September 30, 2020, full-scale production (SOP) of our sedan began at the same facility."
+          }
+        },
+        {
+          "year": "2021",
+          "label": {
+            "hy": "2021 թ. ապրիլի 1-ին սկսվեց մեր SUV մոդելի լիարժեք արտադրությունը (SOP)։",
+            "en": "On April 1, 2021, full-scale production (SOP) of our SUV model began."
+          }
+        },
+        {
+          "year": "2021",
+          "label": {
+            "hy": "2021 թ. մայիսի 26-ին նույն արտադրական գծից դուրս եկավ սեդանի ֆլագմանական տարբերակի հավաստագրման մեքենան։",
+            "en": "On May 26, 2021, the verification build of the sedan's flagship variant rolled off the same production line."
+          }
+        }
       ]
     }
   }

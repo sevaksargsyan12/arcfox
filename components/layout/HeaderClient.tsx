@@ -51,8 +51,17 @@ export function HeaderClient({ nav, siteName }: HeaderClientProps) {
       }`}
     >
       <div className="container-wide flex h-20 items-center justify-between">
-        <Link href="/" className="font-display text-xl font-bold tracking-wide">
-          {siteName.toUpperCase()}
+        <Link href="/" className="flex items-center">
+          {/* Real brand logo asset (confirmed exception to the placeholder-
+              branding policy). It's a light/white mark with no separate
+              dark variant available, so it's inverted for the solid
+              (non-transparent) header state instead of vanishing on white. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo.webp"
+            alt={siteName}
+            className={`h-7 w-auto transition-[filter] duration-300 ${transparent ? "" : "invert"}`}
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

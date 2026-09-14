@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /source
+/reference
 /.pnp
 .pnp.*
 .yarn/*

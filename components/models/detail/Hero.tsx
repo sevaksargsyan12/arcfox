@@ -1,14 +1,11 @@
-import { Link } from "@/i18n/navigation";
-
 interface ModelHeroProps {
   images: string[];
   name: string;
   tagline: string;
   bodyType: string;
-  testDriveCta: string;
 }
 
-export function Hero({ images, name, tagline, bodyType, testDriveCta }: ModelHeroProps) {
+export function Hero({ images, name, tagline, bodyType }: ModelHeroProps) {
   return (
     // -mt-20 pulls the hero up under the sticky header, matching the home
     // hero's overlay treatment (see components/home/Hero.tsx).
@@ -20,9 +17,6 @@ export function Hero({ images, name, tagline, bodyType, testDriveCta }: ModelHer
         <p className="font-display text-sm uppercase tracking-widest text-white/80">{bodyType}</p>
         <h1 className="mt-2 font-display text-4xl font-bold md:text-6xl">{name}</h1>
         <p className="mt-3 max-w-md text-white/85">{tagline}</p>
-        <Link href="/test-drive" className="btn mt-6">
-          {testDriveCta}
-        </Link>
       </div>
     </section>
   );

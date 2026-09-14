@@ -166,6 +166,8 @@ const sectionArt = [
   ["about", "hero", "#34393e", "#1c1e21"],
   ["about", "map", "#3ea3d7", "#14475f"],
   ["partners", "hero", "#585858", "#34393e"],
+  ["partners", "huawei-banner", "#c8102e", "#6b0916"],
+  ["partners", "magna-banner", "#0033a0", "#001a52"],
   ["global-rd", "design", "#3ea3d7", "#2f83b1"],
   ["global-rd", "capability", "#474c52", "#1c1e21"],
   ["global-rd", "battery", "#ce953b", "#8a5f22"],

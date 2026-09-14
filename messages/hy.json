@@ -9,12 +9,10 @@
     "buttons": {
       "learnMore": "Իմանալ ավելին",
       "viewDetails": "Դիտել մանրամասները",
-      "apply": "Դիմել",
       "submit": "Ուղարկել",
       "sending": "Ուղարկվում է...",
       "close": "Փակել",
       "seeAll": "Դիտել բոլորը",
-      "bookTestDrive": "Փորձարկել վարումը",
       "readMore": "Կարդալ ավելին",
       "backToList": "Վերադառնալ ցուցակին",
       "download": "Ներբեռնել"
@@ -31,8 +29,6 @@
       "capability": "Կարողություններ",
       "battery": "Մարտկոց",
       "news": "Նորություններ",
-      "careers": "Կարիերա",
-      "testDrive": "Փորձարկել վարումը",
       "contact": "Կապ"
     },
     "languageSwitcher": { "label": "Լեզու" }
@@ -47,9 +43,7 @@
       "partners": "Գործընկերներ",
       "globalRd": "Հետազոտություն և զարգացում",
       "news": "Նորություններ",
-      "careers": "Կարիերա",
       "support": "Աջակցություն",
-      "testDrive": "Փորձարկել վարումը",
       "contact": "Կապ",
       "legal": "Իրավական",
       "privacy": "Գաղտնիության քաղաքականություն",
@@ -76,14 +70,14 @@
     "galleryTitle": "Արտաքին",
     "interiorTitle": "Ինտերիեր",
     "featuresTitle": "Առանձնահատկություններ",
-    "specSheetCta": "Տեխնիկական բնութագրեր",
-    "bookTestDriveCta": "Փորձարկել վարումը"
+    "specSheetCta": "Տեխնիկական բնութագրեր"
   },
   "about": {
     "pageTitle": "Մեր մասին"
   },
   "partners": {
     "pageTitle": "Գործընկերներ",
+    "gridTitle": "Համաշխարհային կարգի գործընկերներ",
     "timelineTitle": "Համագործակցության պատմություն"
   },
   "globalRd": {
@@ -97,51 +91,6 @@
     "filterAll": "Բոլորը",
     "empty": "Այս կատեգորիայում նորություններ չկան։",
     "publishedOn": "Հրապարակված է"
-  },
-  "careers": {
-    "pageTitle": "Կարիերա",
-    "subtitle": "Միացեք թիմին, որը ձևավորում է էլեկտրական շարժման ապագան։",
-    "filterCategory": "Բոլոր ոլորտները",
-    "filterArea": "Բոլոր տարածքները",
-    "tableTitle": "Աշխատատեղ",
-    "tableNature": "Տեսակ",
-    "tableNumber": "Քանակ",
-    "tableLocation": "Տեղակայում",
-    "empty": "Այս ֆիլտրերով աշխատատեղեր չեն գտնվել։",
-    "detail": {
-      "locationLabel": "Տեղակայում",
-      "descriptionTitle": "Աշխատատեղի նկարագրություն",
-      "applyCta": "Դիմել այս աշխատատեղին"
-    },
-    "form": {
-      "title": "Դիմել աշխատատեղին",
-      "fullName": "Անուն Ազգանուն",
-      "nationality": "Քաղաքացիություն",
-      "email": "Էլ. հասցե",
-      "phone": "Հեռախոսահամար",
-      "currentCountry": "Ընթացիկ երկիր",
-      "currentCompany": "Ընթացիկ աշխատավայր",
-      "resume": "Ինքնակենսագրություն",
-      "resumeHint": "PDF, DOC կամ DOCX, մինչև 10 ՄԲ",
-      "resumeChoose": "Ընտրել ֆայլ",
-      "resumeNone": "Ֆայլ ընտրված չէ"
-    }
-  },
-  "testDrive": {
-    "pageTitle": "Փորձարկել վարումը",
-    "subtitle": "Ամրագրեք փորձնական վարում ձեզ մոտակա Veylor վաճառքի կենտրոնում։",
-    "step1Title": "Քայլ 1", "step1Desc": "Ձեր տվյալները",
-    "step2Title": "Քայլ 2", "step2Desc": "Ընտրեք մոդելը",
-    "step3Title": "Քայլ 3", "step3Desc": "Հաստատեք ամրագրումը",
-    "form": {
-      "country": "Երկիր / տարածաշրջան",
-      "gender": "Կիրառություն",
-      "name": "Անուն Ազգանուն",
-      "phone": "Հեռախոսահամար",
-      "email": "Էլ. հասցե"
-    },
-    "next": "Հաջորդ",
-    "back": "Հետ"
   },
   "contact": {
     "pageTitle": "Կապ մեզ հետ",
@@ -173,8 +122,7 @@
     "validation": {
       "required": "Այս դաշտը պարտադիր է",
       "invalidEmail": "Խնդրում ենք մուտքագրել վավեր էլ. հասցե",
-      "invalidPhone": "Խնդրում ենք մուտքագրել վավեր հեռախոսահամար",
-      "fileRequired": "Խնդրում ենք կցել ֆայլ"
+      "invalidPhone": "Խնդրում ենք մուտքագրել վավեր հեռախոսահամար"
     }
   },
   "notFound": {

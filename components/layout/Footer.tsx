@@ -15,7 +15,8 @@ export async function Footer() {
       <div className="container-wide py-12">
         <div className="flex flex-col gap-10 border-b border-white/10 pb-10 md:flex-row md:justify-between">
           <div className="max-w-xs">
-            <span className="font-display text-xl font-bold tracking-wide">{site.siteName.toUpperCase()}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/logo.webp" alt={site.siteName} className="h-7 w-auto" />
             <p className="mt-3 text-sm text-white/60">{t("tagline")}</p>
             <div className="mt-5 flex gap-3">
               {site.socialLinks.map((social) => (

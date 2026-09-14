@@ -47,6 +47,26 @@ or copy. Legal/footer text (privacy statement, official statement, copyright lin
 likewise original placeholder text, not the reference's BAIC-specific legal language
 or China ICP/police-registration compliance badges.
 
+**Confirmed exceptions to the above**, made explicitly with the user, scoped
+narrowly and not to be extended elsewhere without asking again:
+- **Site logo**: the header/footer logo is the real ARCFOX logo image
+  (`public/images/logo.webp`, copied as-is from a saved snapshot of the real
+  ARCFOX site), not a "Veylor" wordmark. Only the logo *graphic* changed — the
+  textual site name ("Veylor"), footer legal line, and page metadata are
+  unaffected. It's a light-colored mark with no separate dark variant available,
+  so it's CSS-inverted (`invert` class in `components/layout/HeaderClient.tsx`)
+  for the solid (non-transparent) header state.
+- **`/about/partners` content**: the partner grid and the two "Cooperation
+  History" deep-dives (Huawei, Magna) use real, factual partner names and real
+  dates/milestones reverse-engineered from a saved snapshot of the real ARCFOX
+  partners page (`reference/live-pages/partners/`), written in original wording
+  (not copied/paraphrased from that page) — see `lib/data/fixtures/about.json`'s
+  `partners` key. Real partner *logos* were not sourced or used (no local
+  assets, and reusing seven more companies' trademarked marks wasn't part of
+  what was asked) — partner tiles show the name as styled text instead. The
+  two deep-dive section banners are placeholder art (see below), not the
+  reference's real banner photos.
+
 ## Placeholder imagery
 
 No real photography exists for this brand yet, and the reference site's real ArcFox
@@ -63,15 +83,19 @@ exists; no code changes needed.
 ## Pages included / excluded
 
 **Included:** Home, Models (list + detail), About + Partners, Global R&D (landing +
-Design/Capability/Battery), News (release list + detail), Careers (list + detail +
-application form UI), Test Drive booking (form UI), Contact (form UI), Privacy
+Design/Capability/Battery), News (release list + detail), Contact (form UI), Privacy
 Statement, Official Statement.
 
 **Excluded** (not scaffolded at all — no routes, no components, no data): the media/
 gallery center (reference's `/multimedia` and its near-duplicate `/multimedias`), the
 distributor center and all its subpages, dealer registration, News → Event Review, and
 the reference's separate "Media Contact" press-inquiry page (`/mediaCenter`) — all
-excluded per explicit decisions made before/during planning.
+excluded per explicit decisions made before/during planning. **Careers** (list +
+detail + application form) and **Test Drive** booking were built in Phase 1 but later
+removed at the user's request, along with everything used only by them (`lib/data/jobs.ts`
++ its fixture, the `components/careers/`, `components/test-drive/`, and
+`components/forms/FileUploadField.tsx` components, the "Book a test drive" CTA on
+model detail pages, and the corresponding nav/footer links and `messages/*.json` keys).
 
 ## Deviations from the reference project (and why)
 
@@ -95,7 +119,7 @@ directly. Where this build differs on purpose:
    numeric backend IDs (`/models/55`).
 6. **News route** — `/news` is the release list directly (no `/news/release` nesting),
    since Event Review — its only reason to disambiguate against — is excluded.
-7. **News/careers pagination** — plain `?page=N` query params, not the reference's
+7. **News pagination** — plain `?page=N` query params, not the reference's
    route-duplication hack (`news/newsRelease/page/[page].ts` re-exporting the list page
    under an alternate URL shape).
 8. **Long-form marketing copy** (About/Partners/Global R&D) lives in the data layer
@@ -123,10 +147,10 @@ directly. Where this build differs on purpose:
     brief's `imageUrl`-per-highlight shape, since no bespoke photography exists yet.
     Swap for real images in Phase 2 if wanted; see `FeatureIconKey` in
     `lib/data/models.ts`.
-14. **Forms** — no real submissions anywhere (careers apply, test drive, contact); all
-    three validate client-side (`react-hook-form` + `zod`) and show a shared success
-    dialog (`components/ui/SuccessDialog.tsx`) instead of calling an API. Phone fields
-    are plain validated `tel` inputs (`libphonenumber-js` for validation) rather than a
+14. **Forms** — no real submission (Contact); it validates client-side
+    (`react-hook-form` + `zod`) and shows a shared success dialog
+    (`components/ui/SuccessDialog.tsx`) instead of calling an API. Phone fields are
+    plain validated `tel` inputs (`libphonenumber-js` for validation) rather than a
     dedicated composite country-code + number widget.
 15. **Header overlay-over-hero** — the header is `sticky`, and hero sections
     (`components/home/Hero.tsx`, `components/models/detail/Hero.tsx`) pull themselves
@@ -152,27 +176,25 @@ no page or component code should need to change.
 
 | File | Functions | Backs |
 |---|---|---|
-| `lib/data/models.ts` | `getModelSlugs`, `getModelSummaries(locale)`, `getModelBySlug(slug, locale)` | Home, header mega-menu, `/models`, `/models/[slug]`, test drive model picker |
+| `lib/data/models.ts` | `getModelSlugs`, `getModelSummaries(locale)`, `getModelBySlug(slug, locale)` | Home, header mega-menu, `/models`, `/models/[slug]` |
 | `lib/data/news.ts` | `getFeaturedNews`, `getNewsList`, `getNewsCategories`, `getNewsById`, `getNewsIds` | Home news preview, `/news`, `/news/[id]` |
-| `lib/data/jobs.ts` | `getJobCategories`, `getJobAreas`, `getJobCategoryOptions`, `getJobAreaOptions`, `getJobList`, `getJobById`, `getJobIds`, *(documented but unimplemented)* `submitJobApplication` | `/careers`, `/careers/[id]` |
 | `lib/data/nav.ts` | `getHeaderNav(locale)`, `getFooterLinkColumns(locale)` | Header, footer |
 | `lib/data/site-config.ts` | `getSiteConfig(locale)` | Footer (name, contact, social links, legal line) |
-| `lib/data/options.ts` | `getCountries`, `getCountryOptions`, `getGenderOptions`, `getContactProblemTypes`, `getTestDriveModelOptions` | Contact/Test Drive/Careers form dropdowns |
+| `lib/data/options.ts` | `getCountries`, `getCountryOptions`, `getGenderOptions`, `getContactProblemTypes` | Contact form dropdowns |
 | `lib/data/about.ts` | `getAboutContent(locale)`, `getPartnersContent(locale)` | `/about`, `/about/partners` |
 | `lib/data/global-rd.ts` | `getGlobalRdSection(key, locale)`, `getGlobalRdOverview(locale)` | `/global-rd`, `/global-rd/design`\|`capability`\|`battery` |
 | `lib/data/legal.ts` | `getPrivacyStatementHtml(locale)`, `getOfficialStatementHtml(locale)` | `/legal/privacy`, `/legal/official` |
 
-None of the three forms (careers apply, test drive, contact) call any of these — they
-are pure client-side UI in Phase 1 (see deviation #14). Phase 2 should add real submit
-functions with the same "takes typed input, returns a typed result" shape as
-`submitJobApplication`'s documented (but unimplemented) signature.
+The Contact form doesn't call any of these — it's pure client-side UI in Phase 1
+(see deviation #14). Phase 2 should add a real submit function for it, following the
+same "takes typed input, returns a typed result" shape as the rest of this layer.
 
 ## Project structure
 
 ```
 app/[locale]/        Route tree (App Router, next-intl locale segment)
-components/          ui/, layout/, home/, models/, news/, careers/, forms/,
-                      test-drive/, contact/, about/, global-rd/
+components/          ui/, layout/, home/, models/, news/, forms/, contact/,
+                      about/, global-rd/
 lib/data/             Mock data layer + fixtures/ (see table above)
 i18n/                 next-intl routing/navigation/request config
 messages/             hy.json (source of truth), en.json (fallback)

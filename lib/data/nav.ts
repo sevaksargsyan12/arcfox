@@ -47,8 +47,6 @@ export async function getHeaderNav(locale: Locale): Promise<NavLink[]> {
       ],
     },
     { label: t("nav.news"), href: "/news" },
-    { label: t("nav.careers"), href: "/careers" },
-    { label: t("nav.testDrive"), href: "/test-drive" },
     { label: t("nav.contact"), href: "/contact" },
   ];
 }
@@ -72,15 +70,11 @@ export async function getFooterLinkColumns(locale: Locale): Promise<FooterColumn
         { label: t("columns.partners"), href: "/about/partners" },
         { label: t("columns.globalRd"), href: "/global-rd" },
         { label: t("columns.news"), href: "/news" },
-        { label: t("columns.careers"), href: "/careers" },
       ],
     },
     {
       heading: t("columns.support"),
-      links: [
-        { label: t("columns.testDrive"), href: "/test-drive" },
-        { label: t("columns.contact"), href: "/contact" },
-      ],
+      links: [{ label: t("columns.contact"), href: "/contact" }],
     },
     {
       heading: t("columns.legal"),

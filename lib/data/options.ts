@@ -1,5 +1,4 @@
 import { Locale, resolveLocalizedText, SelectOption } from "./types";
-import { getModelSummaries } from "./models";
 
 export interface Country {
   id: string;
@@ -54,9 +53,4 @@ export async function getGenderOptions(locale: Locale): Promise<SelectOption[]> 
 
 export async function getContactProblemTypes(locale: Locale): Promise<SelectOption[]> {
   return PROBLEM_TYPES.map((p) => ({ value: p.value, label: resolveLocalizedText(p.label, locale) }));
-}
-
-export async function getTestDriveModelOptions(locale: Locale): Promise<SelectOption[]> {
-  const models = await getModelSummaries(locale);
-  return models.map((m) => ({ value: m.slug, label: m.name }));
 }
