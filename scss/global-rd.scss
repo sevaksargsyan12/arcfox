@@ -1,0 +1,19 @@
+// Overrides for app/[locale]/global-rd/page.tsx (the overview/landing grid
+// linking to Design, Capability, and Battery).
+//
+// Those three sub-pages all render the same shared component
+// (components/global-rd/GlobalRdSectionBody.tsx) under one base class,
+// `.global-rd-section-page`, with a per-page modifier class
+// (`--design` / `--capability` / `--battery`). The base rule lives here,
+// since this is the parent route; page-specific overrides live in
+// scss/global-rd/design.scss, capability.scss, and battery.scss.
+
+.global-rd-page {
+  // The overview grid linking to the 3 sub-pages.
+}
+
+.global-rd-section-page {
+  // Shared base for the Design/Capability/Battery body -- PageHero +
+  // heading/body sections. Sub-page-specific tweaks belong in
+  // scss/global-rd/{design,capability,battery}.scss instead of here.
+}

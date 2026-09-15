@@ -5,7 +5,7 @@ export function GlobalRdSectionBody({ section }: { section: GlobalRdSection }) {
   return (
     <>
       <PageHero title={section.hero.title} subtitle={section.hero.subtitle} imageUrl={section.hero.imageUrl} />
-      <div className="container-max flex flex-col gap-12 py-16 md:py-24">
+      <div className={`global-rd-section-page global-rd-section-page--${section.key} container-max flex flex-col gap-12 py-16 md:py-24`}>
         {section.sections.map((s) => (
           <div key={s.heading}>
             <h2 className="font-display text-2xl font-semibold md:text-3xl">{s.heading}</h2>

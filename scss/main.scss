@@ -1,0 +1,32 @@
+// Entry point for all hand-written SCSS overrides. Imported once, from
+// app/[locale]/layout.tsx, AFTER "../globals.css" -- so these rules load
+// after Tailwind's and win any same-specificity tie without needing
+// `!important`.
+//
+// One partial per route (or per shared layout/component group), mirroring
+// the app/[locale]/... folder structure 1:1 so a page's stylesheet is easy
+// to find: the models list lives at app/[locale]/models/page.tsx and its
+// overrides live here at scss/models.scss, the model detail route lives at
+// app/[locale]/models/[slug]/page.tsx and its overrides live at
+// scss/models/detail.scss, and so on.
+//
+// Nothing here defines new visual design -- every selector below is an empty
+// (or near-empty) hook matching a class already rendered on the page, ready
+// for real overrides to be dropped in.
+
+@use "layout";
+@use "shared";
+@use "home";
+@use "models";
+@use "models/detail" as models-detail;
+@use "about";
+@use "about/partners" as about-partners;
+@use "global-rd";
+@use "global-rd/design" as global-rd-design;
+@use "global-rd/capability" as global-rd-capability;
+@use "global-rd/battery" as global-rd-battery;
+@use "news";
+@use "news/detail" as news-detail;
+@use "contact";
+@use "legal/privacy" as legal-privacy;
+@use "legal/official" as legal-official;

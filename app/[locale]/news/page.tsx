@@ -29,7 +29,7 @@ export default async function NewsListPage({
   const totalPages = Math.ceil(list.total / list.pageSize) || 1;
 
   return (
-    <div className="container-max py-16 md:py-24">
+    <div className="news-page container-max py-16 md:py-24">
       <h1 className="text-center font-display text-4xl font-bold md:text-5xl">{t("pageTitle")}</h1>
 
       {!category && (

@@ -30,7 +30,7 @@ export default async function PartnersPage({
     <>
       <PageHero title={content.hero.title} subtitle={content.hero.subtitle} imageUrl={content.hero.imageUrl} />
 
-      <div className="container-max flex flex-col gap-20 py-16 md:py-24">
+      <div className="partners-page container-max flex flex-col gap-20 py-16 md:py-24">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-2xl font-semibold md:text-3xl">{content.intro.heading}</h2>
           <p className="mt-4 text-charcoal-600">{content.intro.body}</p>

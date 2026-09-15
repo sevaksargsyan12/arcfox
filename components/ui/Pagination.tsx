@@ -26,7 +26,7 @@ export function Pagination({ page, totalPages, basePath, extraQuery, prevLabel, 
   if (totalPages <= 1) return null;
 
   return (
-    <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Pagination">
+    <nav className="pagination mt-10 flex items-center justify-center gap-2" aria-label="Pagination">
       <Link
         href={buildHref(basePath, Math.max(1, page - 1), extraQuery)}
         aria-disabled={page === 1}

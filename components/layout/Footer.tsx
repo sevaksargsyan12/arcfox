@@ -11,7 +11,7 @@ export async function Footer() {
   const [columns, site] = await Promise.all([getFooterLinkColumns(locale), getSiteConfig(locale)]);
 
   return (
-    <footer className="bg-charcoal-900 text-white">
+    <footer className="site-footer bg-charcoal-900 text-white">
       <div className="container-wide py-12">
         <div className="flex flex-col gap-10 border-b border-white/10 pb-10 md:flex-row md:justify-between">
           <div className="max-w-xs">

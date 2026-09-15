@@ -8,7 +8,7 @@ export async function ModelsSection({ models, locale }: { models: ModelSummary[]
   const t = await getTranslations({ locale, namespace: "home.modelsSection" });
 
   return (
-    <section className="container-max py-16 md:py-24">
+    <section className="home-models container-max py-16 md:py-24">
       <div className="mb-10 flex items-end justify-between">
         <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>
         <Link href="/models" className="hidden text-sm font-semibold text-brand-blue md:block">

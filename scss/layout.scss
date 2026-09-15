@@ -1,0 +1,20 @@
+// Overrides for the shared site chrome rendered by app/[locale]/layout.tsx:
+// components/layout/Header.tsx (+ HeaderClient.tsx) and Footer.tsx (+
+// FooterAccordion.tsx). These render on every page, so keep changes here
+// deliberate.
+
+.site-header {
+  // e.g. tweak the sticky header's height, background, or transition here.
+}
+
+.site-header-nav {
+  // Desktop primary nav row.
+}
+
+.site-header-mobile-nav {
+  // Mobile drawer nav.
+}
+
+.site-footer {
+  // e.g. override the footer's background color or padding here.
+}

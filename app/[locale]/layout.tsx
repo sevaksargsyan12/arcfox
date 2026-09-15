@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SuccessDialogProvider } from "@/components/ui/SuccessDialog";
 import { ModelTranslationsProvider } from "@/components/layout/ModelTranslationsContext";
 import "../globals.css";
+import "../../scss/main.scss";
 
 // English display/body pairing -- a condensed technical face for hero
 // headings, a clean grotesk for body copy. Reference used licensed

@@ -14,7 +14,7 @@ export function ColorsSpecs({ title, subtitle, modelNameDisplay, colors, specs }
 
   return (
     <section
-      className="relative overflow-hidden py-16 md:py-24"
+      className="section-colors-specs relative overflow-hidden py-16 md:py-24"
       style={{ "--section-background-color": selected.sectionBackgroundColor } as React.CSSProperties}
     >
       {/* Tint band from the spec, keyed to the active color. */}

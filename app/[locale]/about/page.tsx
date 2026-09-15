@@ -16,7 +16,7 @@ export default async function AboutPage({
     <>
       <PageHero title={content.hero.title} subtitle={content.hero.subtitle} imageUrl={content.hero.imageUrl} />
 
-      <div className="container-max flex flex-col gap-16 py-16 md:py-24">
+      <div className="about-page container-max flex flex-col gap-16 py-16 md:py-24">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {content.stats.map((stat) => (
             <div key={stat.label} className="rounded-2xl bg-form-bg p-8 text-center">

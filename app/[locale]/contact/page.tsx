@@ -20,7 +20,7 @@ export default async function ContactPage({
   ]);
 
   return (
-    <div className="container-max py-16 md:py-24">
+    <div className="contact-page container-max py-16 md:py-24">
       <div className="mx-auto max-w-2xl text-center">
         <h1 className="font-display text-4xl font-bold md:text-5xl">{t("pageTitle")}</h1>
         <p className="mt-4 text-charcoal-600">{t("subtitle")}</p>

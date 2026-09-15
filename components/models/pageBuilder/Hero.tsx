@@ -18,7 +18,7 @@ export function Hero({ title, subtitle, imageDesktop, imageMobile }: HeroSection
   return (
     // -mt-20 pulls the hero up under the sticky header, matching the site's
     // existing hero treatment (components/home/Hero.tsx).
-    <section className="relative -mt-20 flex h-140 items-center overflow-hidden bg-charcoal-900 md:h-190">
+    <section className="section-hero relative -mt-20 flex h-140 items-center overflow-hidden bg-charcoal-900 md:h-190">
       {hasImage && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}

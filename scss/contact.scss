@@ -1,0 +1,12 @@
+// Overrides for app/[locale]/contact/page.tsx and
+// components/contact/ContactForm.tsx.
+
+.contact-page {
+  // Page heading + form wrapper.
+}
+
+.contact-form {
+  // components/contact/ContactForm.tsx -- individual field styling comes
+  // from the shared `.field-input`/`.field-label`/`.field-error` classes in
+  // app/globals.css.
+}

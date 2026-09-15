@@ -7,7 +7,7 @@ interface PageHeroProps {
 /** Shared hero banner for content-marketing pages (About, Partners, Global R&D). */
 export function PageHero({ title, subtitle, imageUrl }: PageHeroProps) {
   return (
-    <section className="relative flex h-[380px] items-center justify-center overflow-hidden md:h-[480px]">
+    <section className="page-hero relative flex h-[380px] items-center justify-center overflow-hidden md:h-[480px]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={imageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-black/40" />

@@ -38,7 +38,7 @@ export function MetricsSlider({ title, subtitle, slides }: MetricsSliderSection)
   ) : null;
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="section-metrics-slider py-16 md:py-24">
       <div className="container-max mx-auto max-w-[1800px]">
         {(title || subtitle) && (
           <div className="text-center">

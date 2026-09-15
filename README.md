@@ -237,9 +237,8 @@ same "takes typed input, returns a typed result" shape as the rest of this layer
 
 ```
 app/[locale]/        Route tree (App Router, next-intl locale segment)
-components/          ui/, layout/, home/, models/ (detail/ legacy pipeline +
-                      pageBuilder/ CMS sections), news/, forms/, contact/,
-                      about/, global-rd/
+components/          ui/, layout/, home/, models/ (list/ + pageBuilder/ CMS
+                      sections), news/, forms/, contact/, about/, global-rd/
 lib/data/             Data layer + fixtures/ (see table above), wpgraphql.ts
                       (real GraphQL client, see "Real backend: Models")
 lib/sanitize-html.ts  Minimal sanitizer for WordPress WYSIWYG `info` fields
@@ -248,4 +247,58 @@ messages/             hy.json (source of truth), en.json (fallback)
 scripts/              generate-placeholder-art.mjs
 public/images/        Generated placeholder imagery
 public/spin/          Generated 360° spin-viewer frames
+scss/                 Hand-written SCSS override hooks, see "Styling & SCSS
+                      overrides" below
 ```
+
+## Styling & SCSS overrides
+
+Tailwind v4 (`app/globals.css`) is the primary styling system. Alongside it, every
+page and page-builder section renders a plain semantic class (e.g. `models-page`,
+`section-colors-specs`, `home-hero`) that isn't used for any Tailwind utility — it
+exists purely as a stable hook for hand-written overrides.
+
+The `scss/` folder holds those overrides, one file per route, mirroring
+`app/[locale]/`'s own folder structure:
+
+```
+scss/
+  main.scss              Entry point -- @use's every partial below. Imported
+                          once from app/[locale]/layout.tsx, AFTER
+                          "../globals.css", so these rules win any
+                          same-specificity tie with a Tailwind utility.
+  layout.scss            Header + Footer (`.site-header`, `.site-footer`, ...)
+  shared.scss             components/ui/* used by several pages (`.page-hero`,
+                          `.pagination`, `.success-dialog`)
+  home.scss               `/` (`.home-hero`, `.home-models`, `.home-news`,
+                          `.home-about-teaser`)
+  models.scss             `/models` + ModelCard (`.models-page`, `.model-card`)
+  models/detail.scss      `/models/[slug]` + its 9 page-builder sections
+                          (`.model-detail-page`, `.section-hero`,
+                          `.section-colors-specs`, `.section-video`, etc.)
+  about.scss               `/about` (`.about-page`)
+  about/partners.scss      `/about/partners` (`.partners-page`,
+                          `.cooperation-timeline`)
+  global-rd.scss           `/global-rd` overview + the shared base class for
+                          its 3 sub-pages (`.global-rd-page`,
+                          `.global-rd-section-page`)
+  global-rd/{design,capability,battery}.scss
+                          Per-sub-page modifier (`.global-rd-section-page--design`
+                          etc.) -- the 3 sub-pages share one component
+                          (`GlobalRdSectionBody`), so shared rules live in
+                          `global-rd.scss` and only page-specific overrides
+                          belong in these files.
+  news.scss                `/news` + NewsCard (`.news-page`, `.news-card`)
+  news/detail.scss         `/news/[id]` (`.news-detail-page`)
+  contact.scss              `/contact` + ContactForm (`.contact-page`,
+                          `.contact-form`)
+  legal/privacy.scss       `/legal/privacy` (`.legal-privacy-page`)
+  legal/official.scss      `/legal/official` (`.legal-official-page`)
+```
+
+Every selector currently ships as an empty rule -- Sass (and the production
+minifier) drop empty rules from the compiled output, so don't expect to see them in
+`.next/`'s CSS until real declarations are added inside them. To override a Tailwind
+utility, add the property to the matching selector in the matching file; since the
+SCSS import comes after Tailwind's in `app/[locale]/layout.tsx`, no `!important` is
+needed for same-specificity properties.

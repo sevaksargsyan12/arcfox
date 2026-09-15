@@ -24,7 +24,7 @@ export function AdditionalCharacteristics({ title, subtitle, slides }: Additiona
   const current = slides[active];
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="section-additional-characteristics py-16 md:py-24">
       {(title || subtitle) && (
         <div className="text-center">
           {title && <h2 className="font-display text-2xl font-semibold">{title}</h2>}

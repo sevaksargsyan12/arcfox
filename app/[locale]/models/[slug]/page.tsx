@@ -55,9 +55,9 @@ export default async function ModelDetailPage({
   }
 
   return (
-    <>
+    <div className="model-detail-page">
       <ModelTranslationsRegistrar currentSlug={model.slug} translations={model.translations} />
       <PageBuilder sections={model.sections} />
-    </>
+    </div>
   );
 }

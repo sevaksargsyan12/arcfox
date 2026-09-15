@@ -1,0 +1,18 @@
+// Overrides for app/[locale]/page.tsx (the home page) and its section
+// components under components/home/.
+
+.home-hero {
+  // components/home/Hero.tsx -- full-bleed model carousel under the header.
+}
+
+.home-models {
+  // components/home/ModelsSection.tsx -- "The line-up" model grid.
+}
+
+.home-news {
+  // components/home/NewsSection.tsx -- "Latest news" strip.
+}
+
+.home-about-teaser {
+  // components/home/AboutTeaser.tsx -- closing CTA band.
+}

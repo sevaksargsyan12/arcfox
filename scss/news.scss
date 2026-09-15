@@ -1,0 +1,13 @@
+// Overrides for app/[locale]/news/page.tsx (the news list) and
+// components/news/NewsCard.tsx. The news detail route
+// (app/[locale]/news/[id]/page.tsx) has its own stylesheet at
+// scss/news/detail.scss.
+
+.news-page {
+  // Featured strip, category filter pills, and the paginated grid.
+}
+
+.news-card {
+  // components/news/NewsCard.tsx -- also rendered on the home page's
+  // NewsSection, so changes here affect both.
+}

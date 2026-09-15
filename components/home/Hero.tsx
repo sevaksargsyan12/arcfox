@@ -15,7 +15,7 @@ export function Hero({ models }: { models: ModelSummary[] }) {
     // -mt-20 pulls the hero up under the sticky header (h-20) so the
     // header's transparent/white-text state actually overlays the image
     // instead of leaving a blank strip above it.
-    <section className="relative -mt-20">
+    <section className="home-hero relative -mt-20">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 6000, disableOnInteraction: false }}

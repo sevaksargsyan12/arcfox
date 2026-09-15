@@ -30,7 +30,7 @@ export function AdditionalCharacteristics2({ title, subtitle, slides }: Addition
   const slideNumber = String(active + 1).padStart(2, "0");
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="section-additional-characteristics2 py-16 md:py-24">
       {(title || subtitle) && (
         <div className="text-center">
           {title && <h2 className="font-display text-2xl font-semibold">{title}</h2>}

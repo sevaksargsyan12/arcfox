@@ -8,7 +8,7 @@ export async function NewsSection({ items, locale }: { items: NewsListItem[]; lo
   const t = await getTranslations({ locale, namespace: "home.newsSection" });
 
   return (
-    <section className="bg-form-bg py-16 md:py-24">
+    <section className="home-news bg-form-bg py-16 md:py-24">
       <div className="container-max">
         <div className="mb-10 flex items-end justify-between">
           <h2 className="font-display text-3xl font-bold md:text-4xl">{t("title")}</h2>

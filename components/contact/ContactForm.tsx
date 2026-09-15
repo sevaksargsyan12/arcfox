@@ -57,7 +57,7 @@ export function ContactForm({ genders, countries, problemTypes }: ContactFormPro
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto flex max-w-2xl flex-col gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="contact-form mx-auto flex max-w-2xl flex-col gap-5">
       <SelectField
         label={t("gender")}
         options={genders}

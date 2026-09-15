@@ -18,7 +18,7 @@ type AppearanceSliderSection = SectionOf<"appearanceSlider">;
  */
 export function AppearanceSlider({ title, subtitle, slides }: AppearanceSliderSection) {
   return (
-    <section className="py-16 md:py-24">
+    <section className="section-appearance-slider py-16 md:py-24">
       {(title || subtitle) && (
         <div className="text-center">
           {title && <h2 className="font-display text-2xl font-semibold">{title}</h2>}

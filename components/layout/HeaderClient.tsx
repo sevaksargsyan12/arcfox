@@ -46,7 +46,7 @@ export function HeaderClient({ nav, siteName }: HeaderClientProps) {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-colors duration-300 ${
+      className={`site-header sticky top-0 z-40 transition-colors duration-300 ${
         transparent ? "bg-transparent text-white" : "bg-white text-ink shadow-sm"
       }`}
     >
@@ -64,7 +64,7 @@ export function HeaderClient({ nav, siteName }: HeaderClientProps) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="site-header-nav hidden items-center gap-8 md:flex">
           {nav.map((item) => (
             <div key={item.href} className="group relative py-2">
               <Link href={item.href} className="flex items-center gap-1 text-sm font-medium">
@@ -103,7 +103,7 @@ export function HeaderClient({ nav, siteName }: HeaderClientProps) {
       </div>
 
       {mobileOpen && (
-        <div className="max-h-[calc(100vh-5rem)] overflow-y-auto bg-white text-ink md:hidden">
+        <div className="site-header-mobile-nav max-h-[calc(100vh-5rem)] overflow-y-auto bg-white text-ink md:hidden">
           <nav className="container-max flex flex-col gap-1 py-4">
             {nav.map((item, i) => (
               <div key={item.href} className="border-b border-charcoal-500/10 py-2">

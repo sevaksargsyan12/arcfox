@@ -6,7 +6,7 @@ export function NewsCard({ item }: { item: NewsListItem }) {
   const t = useTranslations("common.buttons");
 
   return (
-    <Link href={`/news/${item.id}`} className="group block">
+    <Link href={`/news/${item.id}`} className="news-card group block">
       <div className="overflow-hidden rounded-2xl">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

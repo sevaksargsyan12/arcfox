@@ -18,7 +18,7 @@ export default async function ModelsPage({
   ]);
 
   return (
-    <div className="container-max py-16 md:py-24">
+    <div className="models-page container-max py-16 md:py-24">
       <div className="mx-auto max-w-2xl text-center">
         <h1 className="font-display text-4xl font-bold md:text-5xl">{t("listTitle")}</h1>
         <p className="mt-4 text-charcoal-600">{t("listSubtitle")}</p>

@@ -8,7 +8,7 @@ export function ModelCard({ model }: { model: ModelSummary }) {
   return (
     <Link
       href={`/models/${model.slug}`}
-      className="group block overflow-hidden rounded-2xl bg-form-bg transition-shadow hover:shadow-lg"
+      className="model-card group block overflow-hidden rounded-2xl bg-form-bg transition-shadow hover:shadow-lg"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}

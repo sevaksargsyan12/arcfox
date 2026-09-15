@@ -1,0 +1,13 @@
+// Overrides for app/[locale]/models/page.tsx (the models list) and
+// components/models/list/ModelCard.tsx. The model detail route
+// (app/[locale]/models/[slug]/page.tsx) has its own stylesheet at
+// scss/models/detail.scss.
+
+.models-page {
+  // The list page's outer wrapper.
+}
+
+.model-card {
+  // components/models/list/ModelCard.tsx -- also rendered on the home page's
+  // ModelsSection, so changes here affect both.
+}

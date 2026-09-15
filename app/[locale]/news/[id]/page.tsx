@@ -39,7 +39,7 @@ export default async function NewsDetailPage({
   }
 
   return (
-    <article className="container-max max-w-3xl py-16 md:py-24">
+    <article className="news-detail-page container-max max-w-3xl py-16 md:py-24">
       <Link href="/news" className="text-sm font-medium text-brand-blue">
         &larr; {tCommon("backToList")}
       </Link>

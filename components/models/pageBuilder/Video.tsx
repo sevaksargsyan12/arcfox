@@ -19,7 +19,7 @@ export function Video({ videoUrl, posterUrl }: VideoSection) {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <section className="md:px-0">
+    <section className="section-video md:px-0">
       <div className="mx-4 overflow-hidden rounded-2xl md:mx-0 md:rounded-none">
         <div className="relative aspect-video w-full bg-charcoal-900">
           {playing ? (

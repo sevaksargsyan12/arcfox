@@ -1,0 +1,16 @@
+// Overrides for small UI primitives reused across several pages
+// (components/ui/*), rather than owned by any single route.
+
+.page-hero {
+  // components/ui/PageHero.tsx -- the banner used at the top of About,
+  // Partners, and every Global R&D sub-page.
+}
+
+.pagination {
+  // components/ui/Pagination.tsx -- News list page.
+}
+
+.success-dialog {
+  // components/ui/SuccessDialog.tsx -- the shared "thank you" modal shown
+  // after any form submit.
+}

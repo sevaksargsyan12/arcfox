@@ -15,7 +15,7 @@ export default async function PrivacyPage({
   ]);
 
   return (
-    <div className="container-max max-w-3xl py-16 md:py-24">
+    <div className="legal-privacy-page container-max max-w-3xl py-16 md:py-24">
       <h1 className="font-display text-3xl font-bold md:text-4xl">{t("privacyTitle")}</h1>
       <div className="g-html mt-8" dangerouslySetInnerHTML={{ __html: html }} />
     </div>

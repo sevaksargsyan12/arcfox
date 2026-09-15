@@ -1,0 +1,45 @@
+// Overrides for app/[locale]/models/[slug]/page.tsx and the 9 WordPress
+// page-builder section components it renders, one selector per section
+// (components/models/pageBuilder/*.tsx). Each section is independently
+// null-safe and may or may not appear on a given model, but the class is
+// always present on the ones that do render.
+
+.model-detail-page {
+  // Wraps the full page-builder output for one model.
+}
+
+.section-hero {
+  // Hero.tsx -- full-bleed title/subtitle band.
+}
+
+.section-colors-specs {
+  // ColorsSpecs.tsx -- 360 spin viewer, color swatches, specs grid.
+}
+
+.section-video {
+  // Video.tsx
+}
+
+.section-exterior {
+  // Exterior.tsx
+}
+
+.section-appearance-slider {
+  // AppearanceSlider.tsx
+}
+
+.section-interior {
+  // Interior.tsx
+}
+
+.section-additional-characteristics {
+  // AdditionalCharacteristics.tsx (AC1 -- below-image text row)
+}
+
+.section-additional-characteristics2 {
+  // AdditionalCharacteristics2.tsx (AC2 -- on-image overlay + slide number)
+}
+
+.section-metrics-slider {
+  // MetricsSlider.tsx
+}
