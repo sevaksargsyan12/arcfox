@@ -42,7 +42,7 @@ export function ColorsSpecs({ title, subtitle, modelNameDisplay, colors, specs }
 
   return (
     <section
-      className="section-colors-specs relative overflow-hidden py-16 md:py-24"
+      className="section-colors-specs relative overflow-hidden pt-0 pb-16 md:pb-24"
       style={
         { "--section-background-color": visibleTintColor(selected.sectionBackgroundColor) } as React.CSSProperties
       }
@@ -53,7 +53,7 @@ export function ColorsSpecs({ title, subtitle, modelNameDisplay, colors, specs }
         style={{ background: TINT_GRADIENT }}
       />
 
-      <div className="relative middle" style={{ background: TINT_GRADIENT_VERTICAL }}>
+      <div className="relative middle pt-10" style={{ background: TINT_GRADIENT_VERTICAL }}>
         {(title || subtitle) && (
           <div className="text-center">
             {title && <h2 className="font-display text-2xl font-semibold">{title}</h2>}
@@ -85,7 +85,7 @@ export function ColorsSpecs({ title, subtitle, modelNameDisplay, colors, specs }
                   aria-label={color.label}
                   aria-pressed={i === selectedIndex}
                   onClick={() => setSelectedIndex(i)}
-                  className={`h-9 w-9 rounded-full border-2 transition-transform ${
+                  className={`h-9 w-9 rounded-full cursor-pointer border-2 transition-transform ${
                     i === selectedIndex ? "scale-110 border-brand-blue" : "border-charcoal-500/20"
                   }`}
                   style={{ backgroundColor: color.hex }}

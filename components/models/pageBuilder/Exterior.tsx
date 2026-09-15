@@ -45,15 +45,18 @@ export async function Exterior({ title, subtitle, headingOnImage, imageDesktop, 
             />
 
             {headingOnImage && (
-              <div className="absolute bottom-0 left-0 hidden max-w-sm bg-brand-blue/70 p-4 text-lg font-semibold text-white md:block">
+              <div
+                className="heading-on-image absolute bottom-4 left-4 hidden max-w-sm rounded-md p-4 text-lg font-semibold text-white md:block"
+                style={{ background: "linear-gradient(90deg, #3ba8dc, #86dbfc33)" }}
+              >
                 {headingOnImage}
               </div>
             )}
 
             {metrics.length > 0 && (
-              <div className="absolute bottom-0 right-0 hidden md:flex">
+              <div className="metrics absolute bottom-0 right-0 p-4 hidden md:flex">
                 {metrics.map((m) => (
-                  <div key={m.label} className="border-r border-white/30 bg-black/40 px-5 py-3 text-right text-white last:border-r-0">
+                  <div key={m.label} className="border-r border-white/30 px-5 py-3 text-right text-white last:border-r-0">
                     <p className="text-lg font-bold">{m.value}</p>
                     <p className="text-xs uppercase tracking-wide text-white/80">{m.label}</p>
                   </div>
@@ -63,7 +66,7 @@ export async function Exterior({ title, subtitle, headingOnImage, imageDesktop, 
           </div>
         ) : (
           headingOnImage && (
-            <div className="mx-auto max-w-[1800px] rounded-2xl bg-form-bg p-6 text-center">
+            <div className="heading-on-image mx-auto max-w-[1800px] rounded-2xl bg-form-bg p-6 text-center">
               <p className="text-lg font-semibold text-charcoal-800">{headingOnImage}</p>
               <p className="mt-1 text-xs text-charcoal-500">{t("noImage")}</p>
             </div>
@@ -71,7 +74,7 @@ export async function Exterior({ title, subtitle, headingOnImage, imageDesktop, 
         )}
 
         {metrics.length > 0 && (
-          <div className={`mt-6 grid grid-cols-2 gap-6 ${image ? "md:hidden" : ""}`}>
+          <div className={`metrics mt-6 grid grid-cols-2 gap-6 ${image ? "md:hidden" : ""}`}>
             {metrics.map((m) => (
               <div key={m.label}>
                 <p className="text-base font-bold">{m.value}</p>

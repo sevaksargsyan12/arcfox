@@ -1,22 +1,29 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
-import "swiper/css/pagination";
 import { SectionOf } from "./types";
 
 type AppearanceSliderSection = SectionOf<"appearanceSlider">;
 
 /**
  * Full width. 2.5 slides on desktop (partial next/prev visible), 1 centered
- * slide with dots on mobile. `textOnImage` overlays bottom-center.
+ * slide with a peek of its neighbors on mobile. `textOnImage` overlays
+ * bottom-center. Dots render in their own row below the slider (not
+ * Swiper's default overlaid pagination), so they're never on top of a
+ * slide/image.
  *
  * A slide with `textOnImage` but no image still renders (as a plain tinted
  * card carrying just the text) rather than being dropped -- confirmed real
  * case (T5's 3 slides all have real caption text but no images yet).
  */
 export function AppearanceSlider({ title, subtitle, slides }: AppearanceSliderSection) {
+  // 2nd slide/dot selected by default (index 1), not the 1st.
+  const [active, setActive] = useState(1);
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
   return (
     <section className="section-appearance-slider py-16 md:py-24">
       {(title || subtitle) && (
@@ -27,10 +34,11 @@ export function AppearanceSlider({ title, subtitle, slides }: AppearanceSliderSe
       )}
 
       <Swiper
-        modules={[Pagination]}
-        pagination={{ clickable: true }}
+        onSwiper={(s) => (swiperRef.current = s)}
+        onSlideChange={(s) => setActive(s.activeIndex)}
+        initialSlide={0}
         spaceBetween={16}
-        slidesPerView={1.08}
+        slidesPerView={2.5}
         centeredSlides
         breakpoints={{ 768: { slidesPerView: 2.5, centeredSlides: false, spaceBetween: 20 } }}
         className="mt-8 px-4 pb-10 md:px-8"
@@ -46,17 +54,17 @@ export function AppearanceSlider({ title, subtitle, slides }: AppearanceSliderSe
                     <img
                       src={slide.imageDesktop ?? image}
                       alt={slide.textOnImage ?? ""}
-                      className="hidden aspect-[4/3] w-full object-cover md:block"
+                      className="hidden h-95 w-full object-cover md:block"
                     />
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={slide.imageMobile ?? image}
                       alt={slide.textOnImage ?? ""}
-                      className="aspect-[4/3] w-full object-cover md:hidden"
+                      className="h-95 w-full object-cover md:hidden"
                     />
                   </>
                 ) : (
-                  <div className="aspect-[4/3] w-full bg-charcoal-700" />
+                  <div className="h-95 w-full bg-charcoal-700" />
                 )}
                 {slide.textOnImage && (
                   <p className="absolute inset-x-0 bottom-4 text-center text-sm font-medium text-white drop-shadow">
@@ -68,6 +76,23 @@ export function AppearanceSlider({ title, subtitle, slides }: AppearanceSliderSe
           );
         })}
       </Swiper>
+
+      {slides.length > 1 && (
+        <div className="mt-6 flex justify-center gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`${i + 1}`}
+              aria-current={i === active}
+              onClick={() => swiperRef.current?.slideTo(i)}
+              className={`h-2 rounded-full transition-all ${
+                i === active ? "w-6 bg-brand-blue" : "w-2 bg-charcoal-500/30"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
