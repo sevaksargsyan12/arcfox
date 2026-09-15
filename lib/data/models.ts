@@ -1,5 +1,4 @@
-import modelsFixture from "./fixtures/models.json";
-import { Locale, resolveLocalizedText } from "./types";
+import { Locale } from "./types";
 import {
   GET_MODEL_BY_SLUG,
   GET_MODELS_BY_LOCALE,
@@ -11,44 +10,9 @@ import {
   WpPageBuilderRaw,
 } from "./wpgraphql";
 
-// --- Types shared by both mock and CMS models ------------------------------
-
-export interface ModelColor {
-  key: string;
-  label: string;
-  hex: string;
-  /** Ordered frame URLs for the 360deg spin viewer, one per drag position. */
-  spinFrames: string[];
-}
-
-export interface ModelSpecs {
-  lengthMm: number;
-  widthMm: number;
-  heightMm: number;
-  wheelbaseMm: number;
-}
-
-/**
- * Icon key rendered via lucide-react at the component layer. A simplification
- * over the brief's `imageUrl`-per-highlight shape -- avoids needing bespoke
- * photography for every feature callout while a real design/photo pipeline
- * doesn't exist yet. Swap for `imageUrl` in Phase 2 if real assets arrive.
- */
-export type FeatureIconKey =
-  | "battery"
-  | "zap"
-  | "shield-check"
-  | "wind"
-  | "volume-x"
-  | "boxes"
-  | "gauge"
-  | "sparkles";
-
-export interface ModelFeatureHighlight {
-  icon: FeatureIconKey;
-  title: string;
-  description: string;
-}
+// All model content comes from the real WPGraphQL backend -- there is no
+// mock/placeholder fallback. If the backend is unreachable, model listings
+// come back empty and `/models/[slug]` 404s, rather than showing fake data.
 
 export interface ModelSummary {
   slug: string;
@@ -59,89 +23,6 @@ export interface ModelSummary {
 }
 
 const FALLBACK_THUMBNAIL = "/images/models/placeholder.svg";
-
-// --- Mock model detail (legacy shape, renders via the existing fixed
-// component pipeline in components/models/detail/*) -------------------------
-
-export interface MockModelDetail extends ModelSummary {
-  source: "mock";
-  description: string;
-  hero: { images: string[] };
-  colors: ModelColor[];
-  specs: ModelSpecs;
-  specSheet: { anchor: string; title: string; description: string };
-  exteriorGallery: string[];
-  interiorGallery: string[];
-  featureHighlights: ModelFeatureHighlight[];
-}
-
-interface RawMockModel {
-  slug: string;
-  name: string;
-  tagline: Record<Locale, string>;
-  description: Record<Locale, string>;
-  bodyType: Record<Locale, string>;
-  colors: { key: string; label: Record<Locale, string>; hex: string }[];
-  specs: ModelSpecs;
-  featureHighlights: {
-    icon: FeatureIconKey;
-    title: Record<Locale, string>;
-    description: Record<Locale, string>;
-  }[];
-}
-
-const rawMockModels = modelsFixture as RawMockModel[];
-
-const SHARED_INTERIOR_GALLERY = ["/images/interior/1.svg", "/images/interior/2.svg", "/images/interior/3.svg"];
-
-function toMockModelDetail(raw: RawMockModel, locale: Locale): MockModelDetail {
-  const colors: ModelColor[] = raw.colors.map((color) => ({
-    key: color.key,
-    label: resolveLocalizedText(color.label, locale),
-    hex: color.hex,
-    spinFrames: Array.from({ length: 8 }, (_, i) => `/spin/${raw.slug}/${color.key}/${i}.svg`),
-  }));
-
-  return {
-    source: "mock",
-    slug: raw.slug,
-    name: raw.name,
-    tagline: resolveLocalizedText(raw.tagline, locale),
-    bodyType: resolveLocalizedText(raw.bodyType, locale),
-    heroImageUrl: `/images/models/${raw.slug}/hero.svg`,
-    description: resolveLocalizedText(raw.description, locale),
-    hero: { images: [`/images/models/${raw.slug}/hero.svg`] },
-    colors,
-    specs: raw.specs,
-    specSheet: {
-      anchor: "#specs",
-      title: locale === "hy" ? "Տեխնիկական բնութագրեր" : "Technical specifications",
-      description:
-        locale === "hy"
-          ? "Ամբողջական տեխնիկական տվյալները հասանելի կլինեն վաճառքի կենտրոններում։"
-          : "Full technical documentation is available through our sales centers.",
-    },
-    exteriorGallery: [1, 2, 3].map((i) => `/images/models/${raw.slug}/exterior-${i}.svg`),
-    interiorGallery: SHARED_INTERIOR_GALLERY,
-    featureHighlights: raw.featureHighlights.map((f) => ({
-      icon: f.icon,
-      title: resolveLocalizedText(f.title, locale),
-      description: resolveLocalizedText(f.description, locale),
-    })),
-  };
-}
-
-function mockSummary(raw: RawMockModel, locale: Locale): ModelSummary {
-  return {
-    slug: raw.slug,
-    name: raw.name,
-    tagline: resolveLocalizedText(raw.tagline, locale),
-    bodyType: resolveLocalizedText(raw.bodyType, locale),
-    heroImageUrl: `/images/models/${raw.slug}/hero.svg`,
-  };
-}
-
-// --- CMS model detail (real WPGraphQL content, renders via PageBuilder) ----
 
 export type PageBuilderSection =
   | { type: "hero"; title: string | null; subtitle: string | null; imageDesktop: string | null; imageMobile: string | null }
@@ -200,14 +81,11 @@ export type PageBuilderSection =
       }[];
     };
 
-export interface CmsModelDetail extends ModelSummary {
-  source: "cms";
+export interface ModelDetail extends ModelSummary {
   sections: PageBuilderSection[];
   /** Every locale this model has real content in, and its slug there. */
   translations: { locale: Locale; slug: string }[];
 }
-
-export type ModelDetail = MockModelDetail | CmsModelDetail;
 
 function codeToLocale(code: string): Locale | null {
   const lower = code.toLowerCase();
@@ -334,7 +212,7 @@ function normalizeSection(raw: WpPageBuilderRaw): PageBuilderSection | null {
   }
 }
 
-function cmsSummary(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): ModelSummary {
+function summaryFromModelBy(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): ModelSummary {
   return {
     slug: raw.slug,
     name: raw.title,
@@ -344,7 +222,7 @@ function cmsSummary(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): ModelSu
   };
 }
 
-function normalizeCmsModel(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): CmsModelDetail {
+function normalizeModel(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): ModelDetail {
   const translations: { locale: Locale; slug: string }[] = [];
   const ownLocale = codeToLocale(raw.language.code);
   if (ownLocale) translations.push({ locale: ownLocale, slug: raw.slug });
@@ -354,8 +232,7 @@ function normalizeCmsModel(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): 
   }
 
   return {
-    ...cmsSummary(raw),
-    source: "cms",
+    ...summaryFromModelBy(raw),
     sections: raw.modelPageBuilder.pageBuilder.map(normalizeSection).filter((s): s is PageBuilderSection => s !== null),
     translations,
   };
@@ -368,7 +245,7 @@ function normalizeCmsModel(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): 
  * locale's post. Returns `null` if the backend is unreachable, the slug
  * doesn't exist there, or there's no translation in the requested locale.
  */
-async function fetchCmsModelBySlug(slug: string, locale: Locale): Promise<CmsModelDetail | null> {
+export async function getModelBySlug(slug: string, locale: Locale): Promise<ModelDetail | null> {
   const requestedCode = locale.toUpperCase();
 
   const first = await wpGraphqlRequest<WpModelBySlugResponse>(GET_MODEL_BY_SLUG, { slug });
@@ -383,10 +260,15 @@ async function fetchCmsModelBySlug(slug: string, locale: Locale): Promise<CmsMod
     modelBy = second.modelBy;
   }
 
-  return normalizeCmsModel(modelBy);
+  return normalizeModel(modelBy);
 }
 
-async function fetchCmsModelSummaries(locale: Locale): Promise<ModelSummary[]> {
+/**
+ * Every real model in `locale`. Powers /models, the header mega-menu, the
+ * footer's vehicles column, and the home page. Never throws: if the local
+ * WordPress backend isn't reachable, this returns an empty list.
+ */
+export async function getModelsByLocale(locale: Locale): Promise<ModelSummary[]> {
   const result = await wpGraphqlRequest<WpModelsByLocaleResponse>(GET_MODELS_BY_LOCALE, {
     language: locale.toUpperCase(),
   });
@@ -404,32 +286,4 @@ async function fetchCmsModelSummaries(locale: Locale): Promise<ModelSummary[]> {
     .sort((a, b) => (a.displayOrder ?? Infinity) - (b.displayOrder ?? Infinity))
     // eslint-disable-next-line @typescript-eslint/no-unused-vars -- stripping displayOrder after sorting by it
     .map(({ displayOrder, ...summary }) => summary);
-}
-
-// --- Public API --------------------------------------------------------
-
-/**
- * Every model in `locale` -- real CMS models plus the mock placeholder
- * line-up, merged into one list. Powers /models, the header mega-menu, the
- * footer's vehicles column, and the home page. Never throws: if the local
- * WordPress backend isn't reachable, this just returns the mock list.
- */
-export async function getModelsByLocale(locale: Locale): Promise<ModelSummary[]> {
-  const cmsList = await fetchCmsModelSummaries(locale);
-  const mockList = rawMockModels.map((raw) => mockSummary(raw, locale));
-  return [...cmsList, ...mockList];
-}
-
-/**
- * One model's full detail, in `locale`. Tries the real CMS first (resolving
- * translations as needed); falls back to mock fixture data for any slug the
- * CMS doesn't have (including when the backend is unreachable).
- */
-export async function getModelBySlug(slug: string, locale: Locale): Promise<ModelDetail | null> {
-  const cms = await fetchCmsModelBySlug(slug, locale);
-  if (cms) return cms;
-
-  const raw = rawMockModels.find((m) => m.slug === slug);
-  if (!raw) return null;
-  return toMockModelDetail(raw, locale);
 }

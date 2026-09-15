@@ -62,15 +62,8 @@
   },
   "models": {
     "listTitle": "The line-up",
-    "listSubtitle": "Every Veylor model is shaped around a purpose, from the city car to the flagship performance statement.",
-    "specsTitle": "Key specifications",
-    "specs": { "length": "Length", "width": "Width", "height": "Height", "wheelbase": "Wheelbase" },
-    "colorsTitle": "Colors",
+    "listSubtitle": "Every model is shaped around a purpose, from the city car to the flagship performance statement.",
     "spinHint": "Drag to spin",
-    "galleryTitle": "Exterior",
-    "interiorTitle": "Interior",
-    "featuresTitle": "Features",
-    "specSheetCta": "Technical specifications",
     "pageBuilder": {
       "prevSlide": "Previous slide",
       "nextSlide": "Next slide",

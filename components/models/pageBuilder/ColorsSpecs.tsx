@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { SpinViewer } from "@/components/models/detail/SpinViewer/SpinViewer";
+import { SpinViewer } from "./SpinViewer/SpinViewer";
 import { SectionOf } from "./types";
 
 type ColorsSpecsSection = SectionOf<"colorsSpecs">;

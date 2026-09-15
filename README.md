@@ -3,14 +3,13 @@
 A Next.js (App Router) frontend for an ArcFox-style automotive marketing website,
 built against local mock data behind a clean data-fetching abstraction, so it could
 later swap in headless WordPress + WPGraphQL without touching page/component code.
-That swap has now started for **Models**: a real local WordPress + ACF + WPGraphQL +
-Polylang backend exists, and `/models` renders 2 real models (KAOLA S, T5) merged
-alongside the 4 mock ones — see [Real backend: Models](#real-backend-models) below.
-Every other content type is still mock-only.
+That swap is done for **Models**: a real local WordPress + ACF + WPGraphQL + Polylang
+backend is the *only* source for vehicle models now — there is no mock/placeholder
+model data or fallback. See [Real backend: Models](#real-backend-models) below.
 
-The mock brand used throughout ("Veylor", "Veylor One/Aero/Terra/Nova") is a
-placeholder invented for this build — not the reference site's real ArcFox/BAIC
-branding, names, or copy (see [Branding](#branding--content) below).
+Every other content type (News, About, Global R&D, Contact, site config) is still
+mock-only, using an invented placeholder brand ("Veylor") — not the reference site's
+real ArcFox/BAIC branding, names, or copy (see [Branding](#branding--content) below).
 
 ## Getting started
 
@@ -30,8 +29,8 @@ npm run generate:art   # regenerate the placeholder SVG imagery (see below)
 
 ## Languages
 
-- **Armenian (`hy`)** — default locale, served with **no URL prefix** (`/models/one`).
-- **English (`en`)** — served under an **`/en` prefix** (`/en/models/one`).
+- **Armenian (`hy`)** — default locale, served with **no URL prefix** (`/models/kaola-s-hy`).
+- **English (`en`)** — served under an **`/en` prefix** (`/en/models/kaola-s`).
 - Powered by [next-intl](https://next-intl.dev). Config: [i18n/routing.ts](i18n/routing.ts).
 - `localeDetection` is explicitly disabled (`i18n/routing.ts`) — otherwise next-intl
   negotiates a locale from the browser's `Accept-Language` header and silently
@@ -43,11 +42,11 @@ npm run generate:art   # regenerate the placeholder SVG imagery (see below)
 
 ## Branding & content
 
-Per an explicit decision made before this build started, all mock content uses an
-invented placeholder brand ("Veylor") and model names ("Veylor One/Aero/Terra/Nova"),
-not the reference site's real ArcFox/BAIC branding, model names (T1/T5/S5/Kaola S),
-or copy. Legal/footer text (privacy statement, official statement, copyright line) is
-likewise original placeholder text, not the reference's BAIC-specific legal language
+Per an explicit decision made before this build started, all mock content (i.e.
+everything except Models, which is real-backend-only now, see below) uses an invented
+placeholder brand ("Veylor"), not the reference site's real ArcFox/BAIC branding,
+names, or copy. Legal/footer text (privacy statement, official statement, copyright
+line) is likewise original placeholder text, not the reference's BAIC-specific legal language
 or China ICP/police-registration compliance badges.
 
 **Confirmed exceptions to the above**, made explicitly with the user, scoped
@@ -72,16 +71,14 @@ narrowly and not to be extended elsewhere without asking again:
 
 ## Placeholder imagery
 
-No real photography exists for this brand yet, and the reference site's real ArcFox
-photography must not be reused. All imagery — model hero shots, the 360° spin-viewer
-frames, exterior/interior galleries, news banners, and section art on About/Partners/
-Global R&D — is **procedurally generated SVG** via [scripts/generate-placeholder-art.mjs](scripts/generate-placeholder-art.mjs)
-(already generated into `public/images/` and `public/spin/`; rerun with
-`npm run generate:art` after editing `lib/data/fixtures/models.json`). It uses one
-stylized car silhouette recolored per model/color rather than bespoke per-model art —
-good enough to prove out the layout and the 360° drag interaction, not meant to look
-final. Swap `public/images/**` and `public/spin/**` for real photography whenever it
-exists; no code changes needed.
+Model imagery is entirely real now (fetched live from WPGraphQL — see
+[Real backend: Models](#real-backend-models)), so there's no placeholder art to
+generate for models anymore. What's left in
+[scripts/generate-placeholder-art.mjs](scripts/generate-placeholder-art.mjs) covers
+content that's still mock-only and has no real photography yet: news banners, generic
+section art for About/Partners/Global R&D, and one generic fallback thumbnail
+(`public/images/models/placeholder.svg`) used when a real CMS model is missing its own
+`listThumbnail`. Rerun with `npm run generate:art` after editing those fixtures.
 
 ## Pages included / excluded
 
@@ -107,19 +104,19 @@ directly. Where this build differs on purpose:
 
 1. **i18n default locale** — `hy` unprefixed / `en` prefixed, the reverse of the
    reference's `en`-default. Required by the brief.
-2. **Model detail data shape** — clean, named sections (`hero`, `colors`, `specs`,
-   `featureHighlights`, `exteriorGallery`, `interiorGallery`) replace the reference's
-   generic, backend-authored `page1..page8` CMS block shape. Better typed, and a much
-   closer match to how WPGraphQL content will actually be modeled in Phase 2.
-3. **360° viewer** — 8 placeholder frames per color (configurable per model/color in
-   the data layer) vs. the reference's ~36–72 real photographed frames. Real drag
-   interaction, deliberately light asset weight for Phase 1. See
-   [components/models/detail/SpinViewer/](components/models/detail/SpinViewer/).
+2. **Model detail data shape** — clean, typed, named sections (`hero`, `colorsSpecs`,
+   `exterior`, ...) replace the reference's generic, backend-authored `page1..page8`
+   CMS block shape — see [Real backend: Models](#real-backend-models) for how this
+   maps onto the real WPGraphQL `pageBuilder[]` content.
+3. **360° viewer** — frame count is whatever the CMS provides per color (real data:
+   ~9 frames for KAOLA S, 0 for T5, handled gracefully either way) rather than the
+   reference's fixed ~36–72 real photographed frames. Real drag interaction either
+   way. See [components/models/pageBuilder/SpinViewer/](components/models/pageBuilder/SpinViewer/).
 4. **News content** — a plain `contentHtml` string rendered via
    `dangerouslySetInnerHTML`, not the reference's ~10-component block-editor renderer
    system (`components/md/*`). This is also the closer match to WPGraphQL post content.
-5. **Model URLs** — human-readable slugs (`/models/one`) instead of the reference's
-   numeric backend IDs (`/models/55`).
+5. **Model URLs** — human-readable slugs (`/models/kaola-s`) instead of the
+   reference's numeric backend IDs (`/models/55`).
 6. **News route** — `/news` is the release list directly (no `/news/release` nesting),
    since Event Review — its only reason to disambiguate against — is excluded.
 7. **News pagination** — plain `?page=N` query params, not the reference's
@@ -146,22 +143,18 @@ directly. Where this build differs on purpose:
     (used for both display and body, varying only by weight, since most
     condensed/display Google Fonts don't ship Armenian glyphs — see
     [app/[locale]/layout.tsx](app/[locale]/layout.tsx)).
-13. **Feature highlights** — rendered with `lucide-react` icons rather than the
-    brief's `imageUrl`-per-highlight shape, since no bespoke photography exists yet.
-    Swap for real images in Phase 2 if wanted; see `FeatureIconKey` in
-    `lib/data/models.ts`.
-14. **Forms** — no real submission (Contact); it validates client-side
+13. **Forms** — no real submission (Contact); it validates client-side
     (`react-hook-form` + `zod`) and shows a shared success dialog
     (`components/ui/SuccessDialog.tsx`) instead of calling an API. Phone fields are
     plain validated `tel` inputs (`libphonenumber-js` for validation) rather than a
     dedicated composite country-code + number widget.
-15. **Header overlay-over-hero** — the header is `sticky`, and hero sections
+14. **Header overlay-over-hero** — the header is `sticky`, and hero sections
     (`components/home/Hero.tsx`, `components/models/detail/Hero.tsx`) pull themselves
     up under it with a negative top margin (`-mt-20`) rather than making the header
     itself `fixed`/`absolute`. Keeps non-hero pages' layout simple (the header just
     reserves its own space normally) while still achieving the transparent-over-hero
     look on pages that have one.
-16. **Dead-code patterns deliberately not replicated**: the reference's commented-out
+15. **Dead-code patterns deliberately not replicated**: the reference's commented-out
     legacy `apiList/*.js` files (superseded by `apiList/use*.ts`, never actually
     imported), the near-duplicate `/multimedia` + `/multimedias` pages, three
     hardcoded one-off news detail routes (`detail/90.vue`/`91.vue`/`92.vue`) alongside
@@ -173,12 +166,12 @@ directly. Where this build differs on purpose:
 
 ## Real backend: Models
 
-`lib/data/models.ts`'s `getModelsByLocale`/`getModelBySlug` now query a real local
-WPGraphQL endpoint first (`lib/data/wpgraphql.ts`; queries copied verbatim from
-`reference/graphql/*.graphql`), falling back to the mock fixture for any slug the CMS
-doesn't have — including every slug, if the backend isn't reachable at all. Nothing
-breaks if `npm run dev`/`npm run build` runs without the local WordPress up; `/models`
-just shows the 4 mock models and `/models/kaola-s` etc. 404.
+`lib/data/models.ts`'s `getModelsByLocale`/`getModelBySlug` query a real local
+WPGraphQL endpoint (`lib/data/wpgraphql.ts`; queries copied verbatim from
+`reference/graphql/*.graphql`). **There is no mock model data or fallback** — models
+come only from the backend. Nothing crashes if `npm run dev`/`npm run build` runs
+without the local WordPress up: `getModelsByLocale` just returns an empty list and
+every model slug 404s, rather than showing placeholder cars.
 
 - **Endpoint**: `WPGRAPHQL_ENDPOINT` env var, defaulting to `http://localhost/arcfox/graphql`
   (copy `.env.local.example` to `.env.local` to override). Fetched with `next: { revalidate: 60 }`
@@ -227,7 +220,7 @@ that swap (see [Real backend: Models](#real-backend-models) above) — the rest 
 
 | File | Functions | Backs |
 |---|---|---|
-| `lib/data/models.ts` | `getModelsByLocale(locale)`, `getModelBySlug(slug, locale)` — **real WPGraphQL + mock fallback**, see above | Home, header mega-menu, `/models`, `/models/[slug]` |
+| `lib/data/models.ts` | `getModelsByLocale(locale)`, `getModelBySlug(slug, locale)` — **real WPGraphQL, no mock fallback**, see above | Home, header mega-menu, `/models`, `/models/[slug]` |
 | `lib/data/news.ts` | `getFeaturedNews`, `getNewsList`, `getNewsCategories`, `getNewsById`, `getNewsIds` | Home news preview, `/news`, `/news/[id]` |
 | `lib/data/nav.ts` | `getHeaderNav(locale)`, `getFooterLinkColumns(locale)` | Header, footer |
 | `lib/data/site-config.ts` | `getSiteConfig(locale)` | Footer (name, contact, social links, legal line) |
