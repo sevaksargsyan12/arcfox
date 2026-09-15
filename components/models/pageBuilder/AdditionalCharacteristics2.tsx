@@ -6,7 +6,7 @@ import { Pagination } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { sanitizeHtml } from "@/lib/sanitize-html";
 import { SectionOf } from "./types";
@@ -92,7 +92,7 @@ export function AdditionalCharacteristics2({ title, subtitle, slides }: Addition
                       onClick={() => swiperRef.current?.slidePrev()}
                       className="flex h-9 w-9 items-center justify-center rounded-full bg-white/80"
                     >
-                      <ChevronLeft size={16} />
+                      <ArrowLeft size={16} />
                     </button>
                     <button
                       type="button"
@@ -100,7 +100,7 @@ export function AdditionalCharacteristics2({ title, subtitle, slides }: Addition
                       onClick={() => swiperRef.current?.slideNext()}
                       className="flex h-9 w-9 items-center justify-center rounded-full bg-white/80"
                     >
-                      <ChevronRight size={16} />
+                      <ArrowRight size={16} />
                     </button>
                   </div>
                 </div>

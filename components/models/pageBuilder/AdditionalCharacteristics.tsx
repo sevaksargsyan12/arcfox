@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { sanitizeHtml } from "@/lib/sanitize-html";
 import { SectionOf } from "./types";
@@ -69,7 +69,7 @@ export function AdditionalCharacteristics({ title, subtitle, slides }: Additiona
                     onClick={() => swiperRef.current?.slidePrev()}
                     className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 md:hidden"
                   >
-                    <ChevronLeft size={18} />
+                    <ArrowLeft size={18} />
                   </button>
                   <button
                     type="button"
@@ -77,7 +77,7 @@ export function AdditionalCharacteristics({ title, subtitle, slides }: Additiona
                     onClick={() => swiperRef.current?.slideNext()}
                     className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 md:hidden"
                   >
-                    <ChevronRight size={18} />
+                    <ArrowRight size={18} />
                   </button>
                 </div>
               </SwiperSlide>
@@ -85,12 +85,24 @@ export function AdditionalCharacteristics({ title, subtitle, slides }: Additiona
           })}
         </Swiper>
 
-        {/* Desktop-only below-image row */}
-        <div className="container-max mt-6 hidden items-start justify-between gap-8 md:flex">
+        {/* Desktop-only below-image row -- px padding instead of
+            container-max's 1240px cap, so this row reads as nearly as wide
+            as the full-bleed image above it, just with a little breathing
+            room from the edges rather than a much-narrower centered box. */}
+        <div className="mt-6 hidden items-start justify-between gap-8 px-6 md:flex md:px-12">
           <div className="flex-1">
             <h3 className="font-display text-lg font-semibold">{current.slideTitle}</h3>
+            {/* Progress bar, not a plain divider: filled proportionally to
+                how far through the slides the active one is, like the
+                reference screenshot's partially-black underline. */}
+            <div className="relative mt-3 h-0.5 w-full bg-charcoal-500/25">
+              <div
+                className="absolute inset-y-0 left-0 bg-ink transition-all duration-300"
+                style={{ width: `${((active + 1) / slides.length) * 100}%` }}
+              />
+            </div>
             <div
-              className="g-html mt-2 max-w-lg text-sm text-charcoal-600"
+              className="g-html mt-3 max-w-lg text-sm text-charcoal-600"
               dangerouslySetInnerHTML={{ __html: sanitizeHtml(current.infoHtml) }}
             />
           </div>
@@ -101,7 +113,7 @@ export function AdditionalCharacteristics({ title, subtitle, slides }: Additiona
               onClick={() => swiperRef.current?.slidePrev()}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-charcoal-500/30 hover:border-brand-blue"
             >
-              <ChevronLeft size={18} />
+              <ArrowLeft size={18} />
             </button>
             <button
               type="button"
@@ -109,7 +121,7 @@ export function AdditionalCharacteristics({ title, subtitle, slides }: Additiona
               onClick={() => swiperRef.current?.slideNext()}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-charcoal-500/30 hover:border-brand-blue"
             >
-              <ChevronRight size={18} />
+              <ArrowRight size={18} />
             </button>
           </div>
         </div>
