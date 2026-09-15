@@ -56,8 +56,8 @@ export async function Exterior({ title, subtitle, headingOnImage, imageDesktop, 
             {metrics.length > 0 && (
               <div className="metrics absolute bottom-0 right-0 p-4 hidden md:flex">
                 {metrics.map((m) => (
-                  <div key={m.label} className="border-r border-white/30 px-5 py-3 text-center text-white last:border-r-0">
-                    <p className="text-lg font-bold">{m.value}</p>
+                  <div style={{maxWidth: "240px"}} key={m.label} className="border-r border-white/30 px-5 py-3 text-center text-white last:border-r-0">
+                    <p className="text-2xl">{m.value}</p>
                     <p className="text-xs uppercase tracking-wide text-white/80">{m.label}</p>
                   </div>
                 ))}

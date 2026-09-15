@@ -6,6 +6,21 @@
 
 .model-detail-page {
   // Wraps the full page-builder output for one model.
+
+  // Reference's page background (a tall sky-gradient strip that tiles
+  // vertically down the page), lifted from the reference's own rule:
+  //   --model-page-bg-color: #fff;
+  //   background-repeat: repeat-y;
+  //   background-size: 100% 200vh;
+  //   background-image: url(/file/public/static/vehicleModel/pc-bg.webp);
+  // Asset copied locally to public/images/models/pc-bg.webp (the reference
+  // URL isn't ours to hotlink) and referenced root-relative here, same
+  // convention as every plain <img src="/images/..."> in this codebase.
+  --model-page-bg-color: #fff;
+  background-color: var(--model-page-bg-color);
+  background-image: url("/images/models/pc-bg.webp");
+  background-repeat: repeat-y;
+  background-size: 100% 200vh;
 }
 
 .section-hero {

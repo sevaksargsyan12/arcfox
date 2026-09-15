@@ -42,7 +42,7 @@ export function ColorsSpecs({ title, subtitle, modelNameDisplay, colors, specs }
 
   return (
     <section
-      className="section-colors-specs relative overflow-hidden pt-0 pb-16 md:pb-24"
+      className="section-colors-specs relative overflow-hidden bg-white pt-0 pb-16 md:pb-24"
       style={
         { "--section-background-color": visibleTintColor(selected.sectionBackgroundColor) } as React.CSSProperties
       }
