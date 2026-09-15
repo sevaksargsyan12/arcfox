@@ -1,17 +1,30 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getModelBySlug, getModelSlugs } from "@/lib/data/models";
+import { getModelBySlug, getModelsByLocale } from "@/lib/data/models";
 import { Locale } from "@/lib/data/types";
+import { routing } from "@/i18n/routing";
+import { redirect } from "@/i18n/navigation";
 import { Hero } from "@/components/models/detail/Hero";
 import { ColorPicker } from "@/components/models/detail/ColorPicker";
 import { SpecsGrid } from "@/components/models/detail/SpecsGrid";
 import { ExteriorGallery } from "@/components/models/detail/ExteriorGallery";
 import { InteriorGallery } from "@/components/models/detail/InteriorGallery";
 import { FeatureHighlights } from "@/components/models/detail/FeatureHighlights";
+import { PageBuilder } from "@/components/models/pageBuilder/PageBuilder";
+import { ModelTranslationsRegistrar } from "@/components/layout/ModelTranslationsContext";
 
 export async function generateStaticParams() {
-  const slugs = await getModelSlugs();
-  return slugs.map((slug) => ({ slug }));
+  // Slugs are NOT locale-invariant for real CMS models (e.g. `kaola-s` vs
+  // `kaola-s-hy`), so this returns the full { locale, slug } combination
+  // itself rather than bare `{ slug }` relying on Next's cross-product with
+  // the parent layout's locale-only params.
+  const perLocale = await Promise.all(
+    routing.locales.map(async (locale) => {
+      const models = await getModelsByLocale(locale);
+      return models.map((m) => ({ locale, slug: m.slug }));
+    })
+  );
+  return perLocale.flat();
 }
 
 export async function generateMetadata({
@@ -22,7 +35,10 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const model = await getModelBySlug(slug, locale as Locale);
   if (!model) return {};
-  return { title: model.name, description: model.description };
+  return {
+    title: model.name,
+    description: model.source === "mock" ? model.description : model.tagline,
+  };
 }
 
 export default async function ModelDetailPage({
@@ -41,6 +57,22 @@ export default async function ModelDetailPage({
 
   if (!model) {
     notFound();
+  }
+
+  // A CMS model's content might have been resolved via `translations` (the
+  // requested slug belonged to the other locale's post) -- keep exactly one
+  // canonical URL per locale per model rather than rendering under both.
+  if (model.slug !== slug) {
+    redirect({ href: `/models/${model.slug}`, locale });
+  }
+
+  if (model.source === "cms") {
+    return (
+      <>
+        <ModelTranslationsRegistrar currentSlug={model.slug} translations={model.translations} />
+        <PageBuilder sections={model.sections} />
+      </>
+    );
   }
 
   return (

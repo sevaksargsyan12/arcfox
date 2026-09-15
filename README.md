@@ -1,9 +1,12 @@
-# Veylor — Automotive Brand Website (Phase 1: Frontend Scaffold)
+# Veylor — Automotive Brand Website (Phase 1 scaffold + early Phase 2)
 
 A Next.js (App Router) frontend for an ArcFox-style automotive marketing website,
-built against local mock data behind a clean data-fetching abstraction. **No backend
-exists yet** — Phase 2 will swap the mock data layer for headless WordPress +
-WPGraphQL without touching any page or component code.
+built against local mock data behind a clean data-fetching abstraction, so it could
+later swap in headless WordPress + WPGraphQL without touching page/component code.
+That swap has now started for **Models**: a real local WordPress + ACF + WPGraphQL +
+Polylang backend exists, and `/models` renders 2 real models (KAOLA S, T5) merged
+alongside the 4 mock ones — see [Real backend: Models](#real-backend-models) below.
+Every other content type is still mock-only.
 
 The mock brand used throughout ("Veylor", "Veylor One/Aero/Terra/Nova") is a
 placeholder invented for this build — not the reference site's real ArcFox/BAIC
@@ -168,15 +171,63 @@ directly. Where this build differs on purpose:
     layer and component tree are single-sourced by construction — there is exactly one
     implementation of each page/section type.
 
+## Real backend: Models
+
+`lib/data/models.ts`'s `getModelsByLocale`/`getModelBySlug` now query a real local
+WPGraphQL endpoint first (`lib/data/wpgraphql.ts`; queries copied verbatim from
+`reference/graphql/*.graphql`), falling back to the mock fixture for any slug the CMS
+doesn't have — including every slug, if the backend isn't reachable at all. Nothing
+breaks if `npm run dev`/`npm run build` runs without the local WordPress up; `/models`
+just shows the 4 mock models and `/models/kaola-s` etc. 404.
+
+- **Endpoint**: `WPGRAPHQL_ENDPOINT` env var, defaulting to `http://localhost/arcfox/graphql`
+  (copy `.env.local.example` to `.env.local` to override). Fetched with `next: { revalidate: 60 }`
+  (ISR), not `cache: "no-store"` — the model list is read by the header/footer on
+  *every* page, so `no-store` there forced the entire site into fully dynamic
+  rendering; ISR keeps everything statically generated while still refreshing at
+  most once a minute.
+- **i18n**: real models aren't locale-invariant (`kaola-s` in `en`, `kaola-s-hy` in
+  `hy`) — resolved via GraphQL's `translations`/`language`, never by string-matching
+  a slug suffix. Visiting a slug under the wrong locale 307-redirects to the
+  canonical one. The header's `LanguageSwitcher` gets the correct translated slug via
+  `ModelTranslationsContext` (`components/layout/ModelTranslationsContext.tsx`) —
+  needed because the switcher lives in a shared layout, not a descendant of the page.
+- **Page builder**: `/models/[slug]` renders one of two ways based on
+  `model.source`. Mock models render the original fixed component pipeline
+  (`components/models/detail/*`) unchanged. CMS models render
+  `components/models/pageBuilder/PageBuilder.tsx`, one component per WordPress
+  `pageBuilder[]` `__typename` (`Hero`, `ColorsSpecs`, `Video`, `Exterior`,
+  `AppearanceSlider`, `Interior`, `AdditionalCharacteristics`,
+  `AdditionalCharacteristics2`, `MetricsSlider`), per `docs/MODEL_PAGE_AND_I18N.md`.
+  Every section — and every field within a present section — degrades gracefully
+  when its content is null (real, current example: T5's Video layout exists but has
+  no video file; several of its slides have real caption text but no images) rather
+  than rendering a broken/empty block, or, worse, silently dropping real text that
+  has no accompanying image.
+- **Known content gaps in the live data** (not code bugs): Armenian (`-hy`) posts are
+  real, distinct, correctly-linked Polylang translations, but their actual field text
+  is currently identical to the English post — Armenian model pages show English text
+  until someone fills in the ACF fields. T5's content is otherwise very sparse (no
+  hero image, empty color spin-frames, most images null). One real content bug worth
+  fixing at the source: T5's "Glass Roof" characteristic slide's `info` field contains
+  a corrupted paste of the old site's rendered markup instead of clean text.
+- **A field-naming quirk to know about**: `metrics[]`'s `label`/`value` convention is
+  inverted between two section types that share the field names — Exterior's
+  `metrics[]` has `value` as the prominent text (matches `specs[]`), but
+  `MetricsSlider`'s nested `metricSlides[].metrics[]` has `label` as the prominent
+  text instead. Confirmed from real query responses; each component implements its
+  own confirmed mapping rather than sharing one renderer.
+
 ## Data layer (`lib/data/`) — Phase 2 work
 
 Every function below is already `async` and returns a clean, locale-resolved type, so
 in Phase 2 **only the function bodies change** (fixture lookup → WPGraphQL request) —
-no page or component code should need to change.
+no page or component code should need to change. `lib/data/models.ts` has already made
+that swap (see [Real backend: Models](#real-backend-models) above) — the rest haven't yet.
 
 | File | Functions | Backs |
 |---|---|---|
-| `lib/data/models.ts` | `getModelSlugs`, `getModelSummaries(locale)`, `getModelBySlug(slug, locale)` | Home, header mega-menu, `/models`, `/models/[slug]` |
+| `lib/data/models.ts` | `getModelsByLocale(locale)`, `getModelBySlug(slug, locale)` — **real WPGraphQL + mock fallback**, see above | Home, header mega-menu, `/models`, `/models/[slug]` |
 | `lib/data/news.ts` | `getFeaturedNews`, `getNewsList`, `getNewsCategories`, `getNewsById`, `getNewsIds` | Home news preview, `/news`, `/news/[id]` |
 | `lib/data/nav.ts` | `getHeaderNav(locale)`, `getFooterLinkColumns(locale)` | Header, footer |
 | `lib/data/site-config.ts` | `getSiteConfig(locale)` | Footer (name, contact, social links, legal line) |
@@ -193,9 +244,12 @@ same "takes typed input, returns a typed result" shape as the rest of this layer
 
 ```
 app/[locale]/        Route tree (App Router, next-intl locale segment)
-components/          ui/, layout/, home/, models/, news/, forms/, contact/,
+components/          ui/, layout/, home/, models/ (detail/ legacy pipeline +
+                      pageBuilder/ CMS sections), news/, forms/, contact/,
                       about/, global-rd/
-lib/data/             Mock data layer + fixtures/ (see table above)
+lib/data/             Data layer + fixtures/ (see table above), wpgraphql.ts
+                      (real GraphQL client, see "Real backend: Models")
+lib/sanitize-html.ts  Minimal sanitizer for WordPress WYSIWYG `info` fields
 i18n/                 next-intl routing/navigation/request config
 messages/             hy.json (source of truth), en.json (fallback)
 scripts/              generate-placeholder-art.mjs

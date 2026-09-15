@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getModelSummaries } from "@/lib/data/models";
+import { getModelsByLocale } from "@/lib/data/models";
 import { Locale } from "@/lib/data/types";
 import { ModelCard } from "@/components/models/list/ModelCard";
 
@@ -14,7 +14,7 @@ export default async function ModelsPage({
 
   const [t, models] = await Promise.all([
     getTranslations({ locale, namespace: "models" }),
-    getModelSummaries(typedLocale),
+    getModelsByLocale(typedLocale),
   ]);
 
   return (

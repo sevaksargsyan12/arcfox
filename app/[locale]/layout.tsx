@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SuccessDialogProvider } from "@/components/ui/SuccessDialog";
+import { ModelTranslationsProvider } from "@/components/layout/ModelTranslationsContext";
 import "../globals.css";
 
 // English display/body pairing -- a condensed technical face for hero
@@ -89,9 +90,11 @@ export default async function LocaleLayout({
       <body className="flex min-h-full flex-col antialiased">
         <NextIntlClientProvider messages={messages}>
           <SuccessDialogProvider>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <ModelTranslationsProvider>
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </ModelTranslationsProvider>
           </SuccessDialogProvider>
         </NextIntlClientProvider>
       </body>

@@ -1,5 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
-import { getModelSummaries } from "@/lib/data/models";
+import { getModelsByLocale } from "@/lib/data/models";
 import { getFeaturedNews } from "@/lib/data/news";
 import { Locale } from "@/lib/data/types";
 import { Hero } from "@/components/home/Hero";
@@ -17,7 +17,7 @@ export default async function HomePage({
   const typedLocale = locale as Locale;
 
   const [models, news] = await Promise.all([
-    getModelSummaries(typedLocale),
+    getModelsByLocale(typedLocale),
     getFeaturedNews(typedLocale, 3),
   ]);
 

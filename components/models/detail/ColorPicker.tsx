@@ -30,7 +30,7 @@ export function ColorPicker({ colors, modelName, colorsTitle, spinHint }: ColorP
               aria-pressed={color.key === selectedKey}
               onClick={() => setSelectedKey(color.key)}
               className={`h-9 w-9 rounded-full border-2 transition-transform ${
-                color.key === selectedKey ? "scale-110 border-brand-blue" : "border-transparent"
+                color.key === selectedKey ? "scale-110 border-brand-blue" : "border-charcoal-500/20"
               }`}
               style={{ backgroundColor: color.hex }}
             />

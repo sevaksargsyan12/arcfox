@@ -70,7 +70,13 @@
     "galleryTitle": "Exterior",
     "interiorTitle": "Interior",
     "featuresTitle": "Features",
-    "specSheetCta": "Technical specifications"
+    "specSheetCta": "Technical specifications",
+    "pageBuilder": {
+      "prevSlide": "Previous slide",
+      "nextSlide": "Next slide",
+      "playVideo": "Play video",
+      "noImage": "No image available yet"
+    }
   },
   "about": {
     "pageTitle": "About Veylor"

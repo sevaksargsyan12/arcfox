@@ -132,6 +132,20 @@
     margin-bottom: 1em;
   }
 
+  /* Real WordPress content ships ordered lists too (e.g. `<ol class="seat-ol-b">`
+     on characteristic slides) -- these class names come from the old site's
+     stylesheet and aren't reused here; the plain element rules below are
+     enough to make them look intentional rather than unstyled. */
+  .g-html ol {
+    list-style: decimal;
+    padding-inline-start: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  .g-html li {
+    margin-bottom: 0.35em;
+  }
+
   .field-input {
     width: 100%;
     border-radius: 0.5rem;

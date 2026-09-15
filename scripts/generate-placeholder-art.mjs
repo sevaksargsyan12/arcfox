@@ -171,6 +171,9 @@ const sectionArt = [
   ["global-rd", "design", "#3ea3d7", "#2f83b1"],
   ["global-rd", "capability", "#474c52", "#1c1e21"],
   ["global-rd", "battery", "#ce953b", "#8a5f22"],
+  // Generic fallback for real CMS content missing a media field (e.g. a
+  // model with no listThumbnail/hero image yet) -- not model-specific.
+  ["models", "placeholder", "#585858", "#34393e"],
 ];
 for (const [folder, name, from, to] of sectionArt) {
   const svg = svgWrap(

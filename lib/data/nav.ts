@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Locale } from "./types";
-import { getModelSummaries } from "./models";
+import { getModelsByLocale } from "./models";
 
 export interface NavLink {
   label: string;
@@ -21,7 +21,7 @@ export interface FooterColumn {
  */
 export async function getHeaderNav(locale: Locale): Promise<NavLink[]> {
   const t = await getTranslations({ locale, namespace: "header" });
-  const models = await getModelSummaries(locale);
+  const models = await getModelsByLocale(locale);
 
   return [
     {
@@ -53,7 +53,7 @@ export async function getHeaderNav(locale: Locale): Promise<NavLink[]> {
 
 export async function getFooterLinkColumns(locale: Locale): Promise<FooterColumn[]> {
   const t = await getTranslations({ locale, namespace: "footer" });
-  const models = await getModelSummaries(locale);
+  const models = await getModelsByLocale(locale);
 
   return [
     {

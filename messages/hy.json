@@ -70,7 +70,13 @@
     "galleryTitle": "Արտաքին",
     "interiorTitle": "Ինտերիեր",
     "featuresTitle": "Առանձնահատկություններ",
-    "specSheetCta": "Տեխնիկական բնութագրեր"
+    "specSheetCta": "Տեխնիկական բնութագրեր",
+    "pageBuilder": {
+      "prevSlide": "Նախորդ սլայդ",
+      "nextSlide": "Հաջորդ սլայդ",
+      "playVideo": "Նվագարկել տեսանյութը",
+      "noImage": "Նկարը դեռ հասանելի չէ"
+    }
   },
   "about": {
     "pageTitle": "Մեր մասին"
