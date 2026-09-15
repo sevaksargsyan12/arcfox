@@ -4,6 +4,7 @@ import {
   GET_MODELS_BY_LOCALE,
   mediaUrl,
   mediaUrls,
+  videoMediaUrl,
   wpGraphqlRequest,
   WpModelBySlugResponse,
   WpModelsByLocaleResponse,
@@ -126,7 +127,7 @@ function normalizeSection(raw: WpPageBuilderRaw): PageBuilderSection | null {
     }
 
     case "ModelPageBuilderPageBuilderVideoLayout": {
-      const videoUrl = mediaUrl(raw.videoFile);
+      const videoUrl = videoMediaUrl(raw.videoFile);
       if (!videoUrl) return null;
       return { type: "video", videoUrl, posterUrl: raw.posterImage ?? null };
     }

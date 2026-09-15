@@ -139,7 +139,7 @@ export const GET_MODEL_BY_SLUG = /* GraphQL */ `
           ... on ModelPageBuilderPageBuilderVideoLayout {
             videoFile {
               node {
-                sourceUrl
+                mediaItemUrl
               }
             }
             posterImage
@@ -295,6 +295,13 @@ interface WpMediaNode {
 interface WpMediaNodes {
   nodes: { sourceUrl: string }[];
 }
+// Video attachments confirmed (against the live backend) to return `sourceUrl:
+// null` even when the file exists -- only `mediaItemUrl` reliably resolves to
+// the actual file URL for this mime type, so the video field uses its own
+// shape rather than reusing WpMediaNode/mediaUrl().
+interface WpVideoMediaNode {
+  node: { mediaItemUrl: string | null } | null;
+}
 
 export interface WpPageBuilderRaw {
   __typename: string;
@@ -313,7 +320,7 @@ export interface WpPageBuilderRaw {
   }[];
   specs?: { label: string; value: string }[];
   // Video
-  videoFile?: WpMediaNode | null;
+  videoFile?: WpVideoMediaNode | null;
   posterImage?: string | null;
   // Exterior
   headingOnImage?: string | null;
@@ -369,6 +376,12 @@ export interface WpModelBySlugResponse {
 /** `{ node: { sourceUrl } } | null` -> `string | null` */
 export function mediaUrl(field: WpMediaNode | null | undefined): string | null {
   return field?.node?.sourceUrl ?? null;
+}
+
+/** `{ node: { mediaItemUrl } } | null` -> `string | null` -- video files only,
+ *  see the `WpVideoMediaNode` comment above for why this isn't `mediaUrl()`. */
+export function videoMediaUrl(field: WpVideoMediaNode | null | undefined): string | null {
+  return field?.node?.mediaItemUrl ?? null;
 }
 
 /** `{ nodes: [{ sourceUrl }] }` -> `string[]` */
