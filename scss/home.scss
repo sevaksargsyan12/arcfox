@@ -2,17 +2,17 @@
 // components under components/home/.
 
 .home-hero {
-  // components/home/Hero.tsx -- full-bleed model carousel under the header.
+  // components/home/Hero.tsx -- full-viewport hero slider under the header.
 }
 
-.home-models {
-  // components/home/ModelsSection.tsx -- "The line-up" model grid.
+.home-model-showcase {
+  // components/home/ModelShowcaseSlider.tsx -- one full model at a time.
+}
+
+.home-video {
+  // components/home/VideoSection.tsx -- autoplaying full-width video.
 }
 
 .home-news {
-  // components/home/NewsSection.tsx -- "Latest news" strip.
-}
-
-.home-about-teaser {
-  // components/home/AboutTeaser.tsx -- closing CTA band.
+  // components/home/LatestNews.tsx -- latest posts grid.
 }

@@ -51,14 +51,7 @@
     }
   },
   "home": {
-    "hero": { "cta": "Explore the line-up" },
-    "modelsSection": { "title": "The line-up", "cta": "View all models" },
-    "newsSection": { "title": "Latest news", "cta": "View all news" },
-    "aboutSection": {
-      "title": "A brand built on trust",
-      "body": "Veylor combines design, technology, and sustainability to build electric cars you'll want to drive every day.",
-      "cta": "Learn about us"
-    }
+    "hero": { "goToSlide": "Go to slide" }
   },
   "models": {
     "listTitle": "The line-up",

@@ -272,6 +272,86 @@ export const GET_MODEL_BY_SLUG = /* GraphQL */ `
   }
 `;
 
+// New (Home page) -- confirmed against the live backend via introspection +
+// a real query during planning. `page(id: "home", idType: URI)` currently
+// resolves to the EN post (language.code: "EN"), with a `home-hy` HY
+// translation -- the OPPOSITE of what might be assumed from the slug name,
+// but consistent with the Model page's own convention (unprefixed = EN,
+// "-hy" suffix = HY). Resolve via `translations[]`, same as
+// GetModelBySlug -- never hardcode which literal slug belongs to which
+// locale.
+export const GET_HOME_PAGE = /* GraphQL */ `
+  query GetHomePage($id: ID!) {
+    page(id: $id, idType: URI) {
+      language {
+        code
+      }
+      translations {
+        ... on Page {
+          slug
+          language {
+            code
+          }
+        }
+      }
+      homePage {
+        heroSlider {
+          heroSlides {
+            title
+            subtitle
+            buttonText
+            link
+            imageDesktop {
+              node {
+                sourceUrl
+              }
+            }
+            imageMobile {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+        video {
+          node {
+            mediaItemUrl
+          }
+        }
+        poster {
+          node {
+            sourceUrl
+          }
+        }
+        videoTitle
+        videoSubtitle
+        videoButtonText
+        buttonLink
+        newsTitle
+      }
+    }
+  }
+`;
+
+// New (Home page "latest news") -- the real WP `posts` type, confirmed
+// against the live schema/a real query during planning. Currently returns
+// an empty `nodes` array (no real posts exist in WordPress yet) --
+// lib/data/latestPosts.ts falls back to mock data whenever this comes back
+// empty, so this same query already "just works" once real posts exist.
+export const GET_LATEST_POSTS = /* GraphQL */ `
+  query GetLatestPosts($language: LanguageCodeFilterEnum!, $first: Int!) {
+    posts(where: { language: $language }, first: $first) {
+      nodes {
+        id
+        databaseId
+        title
+        slug
+        date
+      }
+    }
+  }
+`;
+
 // --- Raw response shapes (field-for-field with the queries above) ---------
 
 export interface WpModelsByLocaleResponse {
@@ -371,6 +451,44 @@ export interface WpModelBySlugResponse {
     };
     modelPageBuilder: { pageBuilder: WpPageBuilderRaw[] };
   } | null;
+}
+
+export interface WpHomePageResponse {
+  page: {
+    language: { code: string };
+    translations: { slug: string; language: { code: string } }[];
+    homePage: {
+      heroSlider: {
+        heroSlides: {
+          title: string | null;
+          subtitle: string | null;
+          buttonText: string | null;
+          link: string | null;
+          imageDesktop: { node: { sourceUrl: string | null } | null } | null;
+          imageMobile: { node: { sourceUrl: string | null } | null } | null;
+        }[];
+      } | null;
+      video: { node: { mediaItemUrl: string | null } | null } | null;
+      poster: { node: { sourceUrl: string | null } | null } | null;
+      videoTitle: string | null;
+      videoSubtitle: string | null;
+      videoButtonText: string | null;
+      buttonLink: string | null;
+      newsTitle: string | null;
+    };
+  } | null;
+}
+
+export interface WpLatestPostsResponse {
+  posts: {
+    nodes: {
+      id: string;
+      databaseId: number;
+      title: string;
+      slug: string;
+      date: string;
+    }[];
+  };
 }
 
 /** `{ node: { sourceUrl } } | null` -> `string | null` */

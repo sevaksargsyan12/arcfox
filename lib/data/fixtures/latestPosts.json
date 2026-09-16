@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "id": "mock-1",
+      "slug": "arcfox-expands-charging-network",
+      "date": "2026-08-20T00:00:00",
+      "title": {
+        "hy": "ARCFOX-ը ընդլայնում է լիցքավորման ցանցը",
+        "en": "ARCFOX expands its charging network"
+      }
+    },
+    {
+      "id": "mock-2",
+      "slug": "arcfox-t5-production-milestone",
+      "date": "2026-08-10T00:00:00",
+      "title": {
+        "hy": "ARCFOX T5-ը հասնում է արտադրության նոր հանգրվանի",
+        "en": "ARCFOX T5 reaches a new production milestone"
+      }
+    },
+    {
+      "id": "mock-3",
+      "slug": "arcfox-design-award",
+      "date": "2026-07-28T00:00:00",
+      "title": {
+        "hy": "ARCFOX-ը արժանացել է դիզայնի միջազգային մրցանակի",
+        "en": "ARCFOX wins an international design award"
+      }
+    },
+    {
+      "id": "mock-4",
+      "slug": "arcfox-battery-partnership",
+      "date": "2026-07-15T00:00:00",
+      "title": {
+        "hy": "Նոր համագործակցություն մարտկոցի տեխնոլոգիաների ոլորտում",
+        "en": "A new partnership in battery technology"
+      }
+    }
+  ]
+}
