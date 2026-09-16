@@ -16,10 +16,13 @@ import { ColorsSpecs } from "@/components/models/pageBuilder/ColorsSpecs";
  * ColorsSpecs component/functionality as the Model detail page (360° spin
  * viewer, color swatches, specs grid, car-color-keyed tint/watermark), not
  * a simplified re-implementation, so the tint is automatically keyed to
- * each model's own real selected color. Swiper's own slide track gives
- * swipe between MODELS for free; prev/next arrows (matching
- * AdditionalCharacteristics2's arrow-button style) sit centered at the
- * bottom-middle of the section. A small "view model" link overlays each
+ * each model's own real selected color. Swipe between models is
+ * deliberately disabled (`allowTouchMove={false}`) -- switching models is
+ * arrows-only here, so it can't be confused with dragging inside a slide
+ * to spin the car; prev/next arrows (matching AdditionalCharacteristics2's
+ * arrow-button style) sit centered at the bottom-middle of the section,
+ * calling slidePrev()/slideNext() directly. A small "view model" link
+ * overlays each
  * slide, since ColorsSpecs's own title/subtitle are the colors *section's*
  * generic heading ("COLORS"/etc.), not the model's marketing name.
  */
@@ -31,7 +34,12 @@ export function ModelShowcaseSlider({ entries }: { entries: ModelShowcaseEntry[]
 
   return (
     <section className="home-model-showcase relative overflow-hidden bg-white py-16 md:py-24">
-      <Swiper onSwiper={(s) => (swiperRef.current = s)} loop={entries.length > 1} slidesPerView={1}>
+      <Swiper
+        onSwiper={(s) => (swiperRef.current = s)}
+        loop={entries.length > 1}
+        slidesPerView={1}
+        allowTouchMove={false}
+      >
         {entries.map((entry) => (
           <SwiperSlide key={entry.slug}>
             <div className="relative">
