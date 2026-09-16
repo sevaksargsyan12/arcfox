@@ -37,12 +37,12 @@ export function SpinViewer({ frames, alt, hint }: SpinViewerProps) {
           positioned one regardless of source order, so the car sits above
           this ellipse without needing an explicit z-index. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      {/* <img
         src="/images/models/360-circle-line.webp"
         alt=""
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 w-[85%] max-w-lg -translate-x-1/2 translate-y-[-35%] opacity-70"
-      />
+      /> */}
       <div
         className="flex aspect-[2.5/1] w-full cursor-grab touch-none items-center justify-center select-none active:cursor-grabbing"
         {...handlers}
