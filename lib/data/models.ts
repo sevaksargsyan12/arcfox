@@ -2,12 +2,14 @@ import { Locale } from "./types";
 import {
   GET_MODEL_BY_SLUG,
   GET_MODELS_BY_LOCALE,
+  GET_MODELS_WITH_COLORS_SPECS,
   mediaUrl,
   mediaUrls,
   videoMediaUrl,
   wpGraphqlRequest,
   WpModelBySlugResponse,
   WpModelsByLocaleResponse,
+  WpModelsWithColorsSpecsResponse,
   WpPageBuilderRaw,
 } from "./wpgraphql";
 
@@ -99,7 +101,7 @@ function codeToLocale(code: string): Locale | null {
  * an absent layout -- confirmed necessary from real data (e.g. a Video
  * layout entry can be present in the array with a null video file).
  */
-function normalizeSection(raw: WpPageBuilderRaw): PageBuilderSection | null {
+export function normalizeSection(raw: WpPageBuilderRaw): PageBuilderSection | null {
   switch (raw.__typename) {
     case "ModelPageBuilderPageBuilderHeroLayout": {
       const imageDesktop = mediaUrl(raw.imageDesktop);
@@ -223,6 +225,31 @@ function summaryFromModelBy(raw: NonNullable<WpModelBySlugResponse["modelBy"]>):
   };
 }
 
+/** Shared by getModelsByLocale and getModelShowcaseEntries -- both start from
+ *  the same list-query node shape (title/slug/modelMeta), sorted the same
+ *  way by displayOrder (nulls last). */
+function summariesFromListNodes<T extends { title: string; slug: string; modelMeta: WpModelsByLocaleResponse["models"]["nodes"][number]["modelMeta"] }>(
+  nodes: T[]
+): (ModelSummary & { node: T })[] {
+  return nodes
+    .map((node) => ({
+      slug: node.slug,
+      name: node.title,
+      tagline: node.modelMeta.tagline ?? "",
+      bodyType: node.modelMeta.bodyType ?? "",
+      heroImageUrl: node.modelMeta.listThumbnail?.node.sourceUrl ?? FALLBACK_THUMBNAIL,
+      displayOrder: node.modelMeta.displayOrder,
+      node,
+    }))
+    .sort((a, b) => (a.displayOrder ?? Infinity) - (b.displayOrder ?? Infinity))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- stripping displayOrder after sorting by it
+    .map(({ displayOrder, ...rest }) => rest);
+}
+
+export type ModelShowcaseEntry = ModelSummary & {
+  colorsSpecs: Extract<PageBuilderSection, { type: "colorsSpecs" }>;
+};
+
 function normalizeModel(raw: NonNullable<WpModelBySlugResponse["modelBy"]>): ModelDetail {
   const translations: { locale: Locale; slug: string }[] = [];
   const ownLocale = codeToLocale(raw.language.code);
@@ -275,16 +302,31 @@ export async function getModelsByLocale(locale: Locale): Promise<ModelSummary[]>
   });
   if (!result) return [];
 
-  return result.models.nodes
-    .map((node) => ({
-      slug: node.slug,
-      name: node.title,
-      tagline: node.modelMeta.tagline ?? "",
-      bodyType: node.modelMeta.bodyType ?? "",
-      heroImageUrl: node.modelMeta.listThumbnail?.node.sourceUrl ?? FALLBACK_THUMBNAIL,
-      displayOrder: node.modelMeta.displayOrder,
-    }))
-    .sort((a, b) => (a.displayOrder ?? Infinity) - (b.displayOrder ?? Infinity))
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- stripping displayOrder after sorting by it
-    .map(({ displayOrder, ...summary }) => summary);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- `node` isn't needed here, only by getModelShowcaseEntries
+  return summariesFromListNodes(result.models.nodes).map(({ node, ...summary }) => summary);
+}
+
+/**
+ * Every real model in `locale` that has a usable colorsSpecs page-builder
+ * section (color swatches + spin frames + specs) -- powers the Home page's
+ * Model Showcase, which reuses the exact same ColorsSpecs component/UI as
+ * the Model detail page, one model per slide. A model with no colorsSpecs
+ * content is skipped entirely (nothing to show in this format), same
+ * "drop what's genuinely empty" convention as normalizeSection. Never
+ * throws: returns `[]` if the backend is unreachable.
+ */
+export async function getModelShowcaseEntries(locale: Locale): Promise<ModelShowcaseEntry[]> {
+  const result = await wpGraphqlRequest<WpModelsWithColorsSpecsResponse>(GET_MODELS_WITH_COLORS_SPECS, {
+    language: locale.toUpperCase(),
+  });
+  if (!result) return [];
+
+  const entries: ModelShowcaseEntry[] = [];
+  for (const { node, ...summary } of summariesFromListNodes(result.models.nodes)) {
+    const colorsSpecs = node.modelPageBuilder.pageBuilder
+      .map(normalizeSection)
+      .find((s): s is Extract<PageBuilderSection, { type: "colorsSpecs" }> => s?.type === "colorsSpecs");
+    if (colorsSpecs) entries.push({ ...summary, colorsSpecs });
+  }
+  return entries;
 }

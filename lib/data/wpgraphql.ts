@@ -68,6 +68,60 @@ export const GET_MODELS_BY_LOCALE = /* GraphQL */ `
   }
 `;
 
+// New (Home page "Model Showcase") -- same summary fields as
+// GET_MODELS_BY_LOCALE, plus each model's colorsSpecs page-builder section
+// (confirmed against the live backend during planning: a bulk list query
+// can embed the same pageBuilder fragment a single-model query can). Kept
+// separate from GET_MODELS_BY_LOCALE, which the Header/Footer mega-menu
+// calls on every page and must stay lightweight -- embedding spin-frame
+// image arrays there would bloat every page's data fetch.
+export const GET_MODELS_WITH_COLORS_SPECS = /* GraphQL */ `
+  query GetModelsWithColorsSpecs($language: LanguageCodeFilterEnum!) {
+    models(where: { language: $language }) {
+      nodes {
+        title
+        slug
+        modelMeta {
+          tagline
+          bodyType
+          displayOrder
+          listThumbnail {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
+        modelPageBuilder {
+          pageBuilder {
+            __typename
+
+            ... on ModelPageBuilderPageBuilderColorsSpecsLayout {
+              title
+              subtitle
+              modelNameDisplay
+              colors {
+                colorLabel
+                swatchHex
+                sectionBackgroundColor
+                spinFrames {
+                  nodes {
+                    sourceUrl
+                  }
+                }
+              }
+              specs {
+                label
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 // Copied verbatim (comments stripped) from reference/graphql/getModelBySlug.graphql
 // -- confirmed working against the real backend. Do not hand-edit field names.
 export const GET_MODEL_BY_SLUG = /* GraphQL */ `
@@ -365,6 +419,22 @@ export interface WpModelsByLocaleResponse {
         displayOrder: number | null;
         listThumbnail: { node: { sourceUrl: string; altText: string } } | null;
       };
+    }[];
+  };
+}
+
+export interface WpModelsWithColorsSpecsResponse {
+  models: {
+    nodes: {
+      title: string;
+      slug: string;
+      modelMeta: {
+        tagline: string | null;
+        bodyType: string | null;
+        displayOrder: number | null;
+        listThumbnail: { node: { sourceUrl: string; altText: string } } | null;
+      };
+      modelPageBuilder: { pageBuilder: WpPageBuilderRaw[] };
     }[];
   };
 }

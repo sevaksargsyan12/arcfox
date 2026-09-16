@@ -1,5 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
-import { getModelsByLocale } from "@/lib/data/models";
+import { getModelShowcaseEntries } from "@/lib/data/models";
 import { getHomePage } from "@/lib/data/home";
 import { getLatestPosts } from "@/lib/data/latestPosts";
 import { Locale } from "@/lib/data/types";
@@ -17,9 +17,9 @@ export default async function HomePage({
   setRequestLocale(locale);
   const typedLocale = locale as Locale;
 
-  const [homePage, models, latestPosts] = await Promise.all([
+  const [homePage, showcaseEntries, latestPosts] = await Promise.all([
     getHomePage(typedLocale),
-    getModelsByLocale(typedLocale),
+    getModelShowcaseEntries(typedLocale),
     getLatestPosts(typedLocale, 4),
   ]);
 
@@ -33,7 +33,7 @@ export default async function HomePage({
           fallbacks (an empty model list, or the mock latest-posts list). */}
       {homePage && <Hero slides={homePage.heroSlides} />}
 
-      <ModelShowcaseSlider models={models} />
+      <ModelShowcaseSlider entries={showcaseEntries} />
 
       {homePage && (
         <VideoSection
