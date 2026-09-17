@@ -10,12 +10,12 @@ export function ModelCard({ model }: { model: ModelSummary }) {
       href={`/models/${model.slug}`}
       className="model-card group block overflow-hidden rounded-2xl bg-form-bg transition-shadow hover:shadow-lg"
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden bg-white">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={model.heroImageUrl}
           alt={model.name}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <div className="p-5">

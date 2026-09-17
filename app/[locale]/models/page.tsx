@@ -23,9 +23,11 @@ export default async function ModelsPage({
         <h1 className="font-display text-4xl font-bold md:text-5xl">{t("listTitle")}</h1>
         <p className="mt-4 text-charcoal-600">{t("listSubtitle")}</p>
       </div>
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+      <div className="mt-12 flex flex-wrap justify-center gap-6">
         {models.map((model) => (
-          <ModelCard key={model.slug} model={model} />
+          <div key={model.slug} className="w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(25%-1.125rem)]">
+            <ModelCard model={model} />
+          </div>
         ))}
       </div>
     </div>

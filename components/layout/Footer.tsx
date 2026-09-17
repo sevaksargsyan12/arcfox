@@ -26,9 +26,9 @@ export async function Footer() {
                   key={social.platform}
                   href={social.url}
                   aria-label={social.platform}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
                 >
-                  <SocialIcon platform={social.platform} />
+                  <SocialIcon platform={social.platform} size={22} />
                 </a>
               ))}
             </div>
