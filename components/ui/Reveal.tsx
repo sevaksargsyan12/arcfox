@@ -18,11 +18,16 @@ interface RevealProps {
  */
 export function Reveal({ children, className, delayMs = 0, as = "div" }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Lazy initializer (not a setState-in-effect) so a reduced-motion
+  // preference shows content immediately without ever entering the hidden
+  // state -- no fade/translate to skip, nothing to synchronize.
+  const [visible, setVisible] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || visible) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -35,6 +40,10 @@ export function Reveal({ children, className, delayMs = 0, as = "div" }: RevealP
     );
     observer.observe(el);
     return () => observer.disconnect();
+    // `visible` is only read as a mount-time guard (skip entirely when
+    // reduced-motion already revealed it) -- re-running this effect when it
+    // flips true would just re-check the guard and no-op, never resubscribe.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const revealClassName = `transition-all duration-700 ease-out ${

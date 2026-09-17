@@ -387,6 +387,86 @@ export const GET_HOME_PAGE = /* GraphQL */ `
   }
 `;
 
+// New (About page) -- confirmed working against the live backend. Fixed-slug
+// singleton page, same convention as GET_HOME_PAGE: resolve locale via
+// `translations[]`, never hardcode which literal slug belongs to which
+// locale even though "about"/"about-hy" happens to follow the Home/Model
+// convention.
+export const GET_ABOUT_PAGE = /* GraphQL */ `
+  query GetAboutPage($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      title
+      slug
+      language {
+        code
+      }
+      translations {
+        ... on Page {
+          slug
+          language {
+            code
+          }
+        }
+      }
+      aboutPage {
+        heroImage {
+          node {
+            sourceUrl
+          }
+        }
+        heroImageMobile {
+          node {
+            sourceUrl
+          }
+        }
+        heroText
+        biTitle
+        biSubtitle
+        biText
+        biImage {
+          node {
+            sourceUrl
+          }
+        }
+        bpTitle
+        bpItems {
+          itemTitle
+          itemContent
+          itemImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+        gpTitle
+        gpSubtitle
+        gpContent
+        gpImage {
+          node {
+            sourceUrl
+          }
+        }
+        metrics {
+          metricTitle
+          metricContent
+        }
+        footerTitle
+        footerContent
+        footerImage {
+          node {
+            sourceUrl
+          }
+        }
+        footerImageMobile {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
 // New (Home page "latest news") -- the real WP `posts` type, confirmed
 // against the live schema/a real query during planning. Currently returns
 // an empty `nodes` array (no real posts exist in WordPress yet) --
@@ -545,6 +625,41 @@ export interface WpHomePageResponse {
       videoButtonText: string | null;
       buttonLink: string | null;
       newsTitle: string | null;
+    };
+  } | null;
+}
+
+export interface WpAboutPageResponse {
+  page: {
+    title: string;
+    slug: string;
+    language: { code: string };
+    translations: { slug: string; language: { code: string } }[];
+    aboutPage: {
+      heroImage: WpMediaNode | null;
+      heroImageMobile: WpMediaNode | null;
+      heroText: string | null;
+      biTitle: string | null;
+      biSubtitle: string | null;
+      biText: string | null;
+      biImage: WpMediaNode | null;
+      bpTitle: string | null;
+      bpItems:
+        | {
+            itemTitle: string | null;
+            itemContent: string | null;
+            itemImage: WpMediaNode | null;
+          }[]
+        | null;
+      gpTitle: string | null;
+      gpSubtitle: string | null;
+      gpContent: string | null;
+      gpImage: WpMediaNode | null;
+      metrics: { metricTitle: string | null; metricContent: string | null }[] | null;
+      footerTitle: string | null;
+      footerContent: string | null;
+      footerImage: WpMediaNode | null;
+      footerImageMobile: WpMediaNode | null;
     };
   } | null;
 }

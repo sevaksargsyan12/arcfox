@@ -1,6 +1,26 @@
 // Overrides for app/[locale]/about/page.tsx. The Partners sub-page has its
 // own stylesheet at scss/about/partners.scss.
+//
+// Real styling lives in Tailwind utility classes directly in each
+// components/about/*.tsx section; these are hook classes only (one per
+// section) for any future override that doesn't fit cleanly as a utility.
 
-.about-page {
-  // Stats row + alternating heading/image sections.
+.about-hero {
+  // AboutHero.tsx -- full-bleed heroImage/heroImageMobile + centered heroText.
+}
+
+.about-brand-inspired {
+  // BrandInspired.tsx -- two-column heading/image + biText color band, stacks on mobile.
+}
+
+.about-brand-philosophy {
+  // BrandPhilosophy.tsx -- bpTitle heading + equal-width bpItems cards, hover-reveal on desktop.
+}
+
+.about-global-plan {
+  // GlobalPlan.tsx -- gpTitle/gpSubtitle/gpContent + gpImage/metrics two-column divider list.
+}
+
+.about-footer {
+  // AboutFooterBlock.tsx -- full-bleed footerImage/footerImageMobile + footerTitle + sanitized footerContent HTML.
 }
