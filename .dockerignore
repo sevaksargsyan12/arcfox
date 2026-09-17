@@ -1,0 +1,38 @@
+# Dependencies (installed fresh inside the image, for Linux, not copied from the host)
+node_modules
+
+# Build outputs (regenerated inside the image)
+.next
+out
+build
+
+# Version control
+.git
+.gitignore
+
+# Unrelated large reference directories (not part of the deployed app)
+source
+reference
+
+# Docs (not needed for build/runtime)
+docs
+
+# Env files -- WPGRAPHQL_ENDPOINT is supplied at container-run time only, never baked into the image
+.env
+.env.*
+!.env.local.example
+
+# Editor/OS cruft
+.vscode
+.idea
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# TypeScript build artifacts
+*.tsbuildinfo
+next-env.d.ts
+
+# Local Claude Code project files
+.claude
