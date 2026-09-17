@@ -3,14 +3,16 @@ import { Locale, resolveLocalizedText } from "./types";
 export interface SiteConfig {
   siteName: string;
   contactEmail: string;
+  /** Both numbers shown in the footer, in display order. */
+  phones: string[];
   address: string;
-  socialLinks: { platform: "facebook" | "instagram" | "linkedin" | "youtube"; url: string }[];
+  socialLinks: { platform: "facebook" | "instagram"; url: string }[];
   legalLine: string;
 }
 
 const ADDRESS: Record<Locale, string> = {
-  hy: "Վեյլոր Մոթորս, Կենտրոնական պուրակ 12, Երևան",
-  en: "Veylor Motors, 12 Central Park Avenue, Yerevan",
+  hy: "Դավիթ Բեկ փողոց 138/4 | Ռուբինյանց 40/3 | Երևան, Հայաստան",
+  en: "Davit-Bek Street 138/4 | Rubinyants 40/3 | Yerevan, Armenia",
 };
 
 const LEGAL_LINE: Record<Locale, string> = {
@@ -21,13 +23,12 @@ const LEGAL_LINE: Record<Locale, string> = {
 export async function getSiteConfig(locale: Locale): Promise<SiteConfig> {
   return {
     siteName: "Veylor",
-    contactEmail: "hello@veylor-motors.example",
+    contactEmail: "info@e-auto.am",
+    phones: ["+374 10 330 330", "+374 91 330 330"],
     address: resolveLocalizedText(ADDRESS, locale),
     socialLinks: [
-      { platform: "facebook", url: "#" },
-      { platform: "instagram", url: "#" },
-      { platform: "linkedin", url: "#" },
-      { platform: "youtube", url: "#" },
+      { platform: "facebook", url: "https://www.facebook.com/arcfox.am" },
+      { platform: "instagram", url: "https://www.instagram.com/arcfox.armenia/" },
     ],
     legalLine: resolveLocalizedText(LEGAL_LINE, locale),
   };

@@ -7,7 +7,7 @@ That swap is done for **Models**: a real local WordPress + ACF + WPGraphQL + Pol
 backend is the *only* source for vehicle models now — there is no mock/placeholder
 model data or fallback. See [Real backend: Models](#real-backend-models) below.
 
-Every other content type (News, About, Global R&D, Contact, site config) is still
+Every other content type (News, About, Contact, site config) is still
 mock-only, using an invented placeholder brand ("Veylor") — not the reference site's
 real ArcFox/BAIC branding, names, or copy (see [Branding](#branding--content) below).
 
@@ -37,7 +37,7 @@ npm run generate:art   # regenerate the placeholder SVG imagery (see below)
   redirects `/` to `/en` for English-language browsers, which would defeat "hy is
   the default, always served unprefixed at `/`".
 - UI-chrome strings live in `messages/hy.json` (source of truth) and `messages/en.json`
-  (secondary/fallback). Long-form marketing copy (About/Partners/Global R&D) lives in
+  (secondary/fallback). Long-form marketing copy (About/Partners) lives in
   the mock data layer instead — see [Data layer](#data-layer--phase-2-work) below.
 
 ## Branding & content
@@ -76,15 +76,14 @@ Model imagery is entirely real now (fetched live from WPGraphQL — see
 generate for models anymore. What's left in
 [scripts/generate-placeholder-art.mjs](scripts/generate-placeholder-art.mjs) covers
 content that's still mock-only and has no real photography yet: news banners, generic
-section art for About/Partners/Global R&D, and one generic fallback thumbnail
+section art for About/Partners, and one generic fallback thumbnail
 (`public/images/models/placeholder.svg`) used when a real CMS model is missing its own
 `listThumbnail`. Rerun with `npm run generate:art` after editing those fixtures.
 
 ## Pages included / excluded
 
-**Included:** Home, Models (list + detail), About + Partners, Global R&D (landing +
-Design/Capability/Battery), News (release list + detail), Contact (form UI), Privacy
-Statement, Official Statement.
+**Included:** Home, Models (list + detail), About + Partners, News (release list +
+detail), Contact (form UI), Privacy Statement, Official Statement.
 
 **Excluded** (not scaffolded at all — no routes, no components, no data): the media/
 gallery center (reference's `/multimedia` and its near-duplicate `/multimedias`), the
@@ -122,39 +121,36 @@ directly. Where this build differs on purpose:
 7. **News pagination** — plain `?page=N` query params, not the reference's
    route-duplication hack (`news/newsRelease/page/[page].ts` re-exporting the list page
    under an alternate URL shape).
-8. **Long-form marketing copy** (About/Partners/Global R&D) lives in the data layer
-   (`lib/data/about.ts`, `lib/data/global-rd.ts`) as `{hy, en}` fields, not in
+8. **Long-form marketing copy** (About/Partners) lives in the data layer
+   (`lib/data/about.ts`) as `{hy, en}` fields, not in
    `messages/*.json` — it's content, not UI chrome, and this rehearses the eventual
    WPGraphQL `locale`-argument query shape.
 9. **Contact form** — no browser-geolocation "auto-detect your country" flow; a plain
    country dropdown. Simplification, not a missing feature worth the added complexity
    here.
-10. **`/global-rd` landing page** — added; the reference has no landing page for
-    Global R&D, only three subpages reachable via the nav dropdown. Better mobile-nav
-    discoverability and SEO for a low marginal cost (reuses the same data as the menu).
-11. **Breakpoints** — kept the reference's numeric values (768 / 992 / 1200 / 1920 /
+10. **Breakpoints** — kept the reference's numeric values (768 / 992 / 1200 / 1920 /
     2560, with **1200px** as the desktop-nav swap point, not the more common 1024px)
     for visual parity, but expressed via one Tailwind v4 `@theme` block
     ([app/globals.css](app/globals.css)) instead of the reference's duplicated
     Tailwind-config-plus-SCSS-variable system.
-12. **Fonts** — the reference's licensed `EurostileNextW1G-*` (display) and
+11. **Fonts** — the reference's licensed `EurostileNextW1G-*` (display) and
     `DINNextW1G-*` (body) families are replaced with free Google Fonts: **Oswald**
     (display) + **Inter** (body) for English, and **Noto Sans Armenian** for Armenian
     (used for both display and body, varying only by weight, since most
     condensed/display Google Fonts don't ship Armenian glyphs — see
     [app/[locale]/layout.tsx](app/[locale]/layout.tsx)).
-13. **Forms** — no real submission (Contact); it validates client-side
+12. **Forms** — no real submission (Contact); it validates client-side
     (`react-hook-form` + `zod`) and shows a shared success dialog
     (`components/ui/SuccessDialog.tsx`) instead of calling an API. Phone fields are
     plain validated `tel` inputs (`libphonenumber-js` for validation) rather than a
     dedicated composite country-code + number widget.
-14. **Header overlay-over-hero** — the header is `sticky`, and hero sections
+13. **Header overlay-over-hero** — the header is `sticky`, and hero sections
     (`components/home/Hero.tsx`, `components/models/detail/Hero.tsx`) pull themselves
     up under it with a negative top margin (`-mt-20`) rather than making the header
     itself `fixed`/`absolute`. Keeps non-hero pages' layout simple (the header just
     reserves its own space normally) while still achieving the transparent-over-hero
     look on pages that have one.
-15. **Dead-code patterns deliberately not replicated**: the reference's commented-out
+14. **Dead-code patterns deliberately not replicated**: the reference's commented-out
     legacy `apiList/*.js` files (superseded by `apiList/use*.ts`, never actually
     imported), the near-duplicate `/multimedia` + `/multimedias` pages, three
     hardcoded one-off news detail routes (`detail/90.vue`/`91.vue`/`92.vue`) alongside
@@ -225,8 +221,7 @@ that swap (see [Real backend: Models](#real-backend-models) above) — the rest 
 | `lib/data/nav.ts` | `getHeaderNav(locale)`, `getFooterLinkColumns(locale)` | Header, footer |
 | `lib/data/site-config.ts` | `getSiteConfig(locale)` | Footer (name, contact, social links, legal line) |
 | `lib/data/options.ts` | `getCountries`, `getCountryOptions`, `getGenderOptions`, `getContactProblemTypes` | Contact form dropdowns |
-| `lib/data/about.ts` | `getAboutContent(locale)`, `getPartnersContent(locale)` | `/about`, `/about/partners` |
-| `lib/data/global-rd.ts` | `getGlobalRdSection(key, locale)`, `getGlobalRdOverview(locale)` | `/global-rd`, `/global-rd/design`\|`capability`\|`battery` |
+| `lib/data/about.ts` | `getAboutPage(locale)`, `getPartnersContent(locale)` | `/about`, `/about/partners` |
 | `lib/data/legal.ts` | `getPrivacyStatementHtml(locale)`, `getOfficialStatementHtml(locale)` | `/legal/privacy`, `/legal/official` |
 
 The Contact form doesn't call any of these — it's pure client-side UI in Phase 1
@@ -238,7 +233,7 @@ same "takes typed input, returns a typed result" shape as the rest of this layer
 ```
 app/[locale]/        Route tree (App Router, next-intl locale segment)
 components/          ui/, layout/, home/, models/ (list/ + pageBuilder/ CMS
-                      sections), news/, forms/, contact/, about/, global-rd/
+                      sections), news/, forms/, contact/, about/
 lib/data/             Data layer + fixtures/ (see table above), wpgraphql.ts
                       (real GraphQL client, see "Real backend: Models")
 lib/sanitize-html.ts  Minimal sanitizer for WordPress WYSIWYG `info` fields
@@ -279,15 +274,6 @@ scss/
   about.scss               `/about` (`.about-page`)
   about/partners.scss      `/about/partners` (`.partners-page`,
                           `.cooperation-timeline`)
-  global-rd.scss           `/global-rd` overview + the shared base class for
-                          its 3 sub-pages (`.global-rd-page`,
-                          `.global-rd-section-page`)
-  global-rd/{design,capability,battery}.scss
-                          Per-sub-page modifier (`.global-rd-section-page--design`
-                          etc.) -- the 3 sub-pages share one component
-                          (`GlobalRdSectionBody`), so shared rules live in
-                          `global-rd.scss` and only page-specific overrides
-                          belong in these files.
   news.scss                `/news` + NewsCard (`.news-page`, `.news-card`)
   news/detail.scss         `/news/[id]` (`.news-detail-page`)
   contact.scss              `/contact` + ContactForm (`.contact-page`,

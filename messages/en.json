@@ -20,31 +20,24 @@
   },
   "header": {
     "nav": {
+      "home": "Home",
       "models": "Models",
-      "about": "About",
-      "aboutOverview": "About Veylor",
-      "partners": "Partners",
-      "globalRd": "Global R&D",
-      "design": "Design",
-      "capability": "Capability",
-      "battery": "Battery",
-      "news": "News",
-      "contact": "Contact"
+      "about": "About Us",
+      "news": "News"
     },
     "languageSwitcher": { "label": "Language" }
   },
   "footer": {
     "tagline": "Electric mobility, built for the future.",
+    "followUs": "Follow us and use following social media platforms to get in contact with us",
+    "contactTitle": "Contact",
     "columns": {
       "vehicles": "Vehicles",
       "allModels": "All models",
       "company": "Company",
-      "about": "About Veylor",
-      "partners": "Partners",
-      "globalRd": "Global R&D",
+      "home": "Home",
+      "about": "About Us",
       "news": "News",
-      "support": "Support",
-      "contact": "Contact",
       "legal": "Legal",
       "privacy": "Privacy Statement",
       "official": "Official Statement"
@@ -71,11 +64,6 @@
     "pageTitle": "Partners",
     "gridTitle": "World-Class Partners",
     "timelineTitle": "Cooperation history"
-  },
-  "globalRd": {
-    "pageTitle": "Global R&D",
-    "overviewSubtitle": "Explore our world of design, engineering capability, and battery technology.",
-    "cardCta": "Explore"
   },
   "news": {
     "pageTitle": "News",

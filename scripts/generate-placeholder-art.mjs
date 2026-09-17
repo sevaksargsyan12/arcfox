@@ -1,8 +1,8 @@
 // Generates placeholder SVG imagery for content that has no real
 // photography yet: news banners, and generic section art for About/
-// Partners/Global R&D (plus a generic fallback thumbnail for any real CMS
-// model missing its own photo). Model imagery itself is entirely real,
-// fetched live from WPGraphQL -- there is no mock model art to generate.
+// Partners (plus a generic fallback thumbnail for any real CMS model
+// missing its own photo). Model imagery itself is entirely real, fetched
+// live from WPGraphQL -- there is no mock model art to generate.
 //
 // Run with: node scripts/generate-placeholder-art.mjs
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -59,16 +59,13 @@ newsAccents.forEach((accent, i) => {
   write(join(publicDir, "images", "news", `${i + 1}.svg`), svg);
 });
 
-// --- Generic section art: About / Partners / Global R&D --------------------
+// --- Generic section art: About / Partners ----------------------------------
 const sectionArt = [
   ["about", "hero", "#34393e", "#1c1e21"],
   ["about", "map", "#3ea3d7", "#14475f"],
   ["partners", "hero", "#585858", "#34393e"],
   ["partners", "huawei-banner", "#c8102e", "#6b0916"],
   ["partners", "magna-banner", "#0033a0", "#001a52"],
-  ["global-rd", "design", "#3ea3d7", "#2f83b1"],
-  ["global-rd", "capability", "#474c52", "#1c1e21"],
-  ["global-rd", "battery", "#ce953b", "#8a5f22"],
   // Generic fallback for real CMS content missing a media field (e.g. a
   // model with no listThumbnail/hero image yet) -- not model-specific.
   ["models", "placeholder", "#585858", "#34393e"],

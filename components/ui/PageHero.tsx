@@ -4,7 +4,7 @@ interface PageHeroProps {
   imageUrl: string;
 }
 
-/** Shared hero banner for content-marketing pages (About, Partners, Global R&D). */
+/** Shared hero banner for content-marketing pages (About, Partners). */
 export function PageHero({ title, subtitle, imageUrl }: PageHeroProps) {
   return (
     <section className="page-hero relative flex h-[380px] items-center justify-center overflow-hidden md:h-[480px]">
