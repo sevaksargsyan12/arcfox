@@ -1,8 +1,8 @@
 {
   "site": {
-    "name": "Veylor",
-    "title": "Veylor | Electric Vehicle Brand",
-    "description": "Veylor is an electric vehicle brand focused on design, range, and sustainability."
+    "name": "E-auto",
+    "title": "E-auto | Electric Vehicle Brand",
+    "description": "E-auto is an electric vehicle brand focused on design, range, and sustainability."
   },
   "common": {
     "pagination": { "prev": "Previous", "next": "Next" },
@@ -58,7 +58,7 @@
     }
   },
   "about": {
-    "pageTitle": "About Veylor"
+    "pageTitle": "About E-auto"
   },
   "partners": {
     "pageTitle": "Partners",

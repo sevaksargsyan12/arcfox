@@ -776,3 +776,37 @@ export function videoMediaUrl(field: WpVideoMediaNode | null | undefined): strin
 export function mediaUrls(field: WpMediaNodes | null | undefined): string[] {
   return field?.nodes?.map((n) => n.sourceUrl) ?? [];
 }
+
+// WP's title/excerpt fields come back with entities encoded (wptexturize
+// turns straight quotes/ellipses into &#8217;/&hellip; etc.), so plain-text
+// fields still contain literal "&#8217;" unless decoded -- handles both
+// numeric (&#8217;, &#x2019;) and the small set of named entities WP
+// actually emits.
+const NAMED_HTML_ENTITIES: Record<string, string> = {
+  amp: "&",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  nbsp: " ",
+  hellip: "…",
+  mdash: "—",
+  ndash: "–",
+  lsquo: "‘",
+  rsquo: "’",
+  ldquo: "“",
+  rdquo: "”",
+};
+
+export function decodeHtmlEntities(text: string): string {
+  return text.replace(/&(#x[0-9a-fA-F]+|#[0-9]+|[a-zA-Z]+);/g, (match, entity: string) => {
+    if (entity[0] === "#") {
+      const code =
+        entity[1] === "x" || entity[1] === "X"
+          ? parseInt(entity.slice(2), 16)
+          : parseInt(entity.slice(1), 10);
+      return Number.isNaN(code) ? match : String.fromCodePoint(code);
+    }
+    return NAMED_HTML_ENTITIES[entity] ?? match;
+  });
+}

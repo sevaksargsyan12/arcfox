@@ -2,15 +2,15 @@
   "overview": {
     "hero": {
       "title": { "hy": "Մենք ստեղծում ենք էլեկտրական շարժման նոր սերունդ", "en": "We're building the next generation of electric mobility" },
-      "subtitle": { "hy": "Veylor-ի մասին", "en": "About Veylor" },
+      "subtitle": { "hy": "E-auto-ի մասին", "en": "About E-auto" },
       "imageUrl": "/images/about/hero.svg"
     },
     "sections": [
       {
         "heading": { "hy": "Մեր առաքելությունը", "en": "Our mission" },
         "body": {
-          "hy": "Veylor-ը ստեղծվել է մեկ նպատակով՝ դարձնել էլեկտրական մեքենաները հասանելի, հուսալի և ցանկալի՝ առանց փոխզիջումների դիզայնի կամ տեխնոլոգիայի հարցում։ Ամեն մոդել ձևավորվում է իրական վարորդների կարիքների շուրջ, ոչ թե հակառակը։",
-          "en": "Veylor was founded with a single purpose: make electric cars accessible, dependable, and genuinely desirable, without compromising on design or technology. Every model is shaped around real drivers' needs, not the other way around."
+          "hy": "E-auto-ն ստեղծվել է մեկ նպատակով՝ դարձնել էլեկտրական մեքենաները հասանելի, հուսալի և ցանկալի՝ առանց փոխզիջումների դիզայնի կամ տեխնոլոգիայի հարցում։ Ամեն մոդել ձևավորվում է իրական վարորդների կարիքների շուրջ, ոչ թե հակառակը։",
+          "en": "E-auto was founded with a single purpose: make electric cars accessible, dependable, and genuinely desirable, without compromising on design or technology. Every model is shaped around real drivers' needs, not the other way around."
         }
       },
       {
@@ -23,8 +23,8 @@
       {
         "heading": { "hy": "Կայունության պարտավորություն", "en": "A commitment to sustainability" },
         "body": {
-          "hy": "Ամեն Veylor մեքենա նվազագույնի է հասցնում իր ազդեցությունը ողջ կյանքի ցիկլում՝ վերականգնված նյութերից մինչև մարտկոցի վերամշակման ծրագրեր։",
-          "en": "Every Veylor vehicle minimizes its footprint across its full life cycle, from recycled materials to battery recycling programs."
+          "hy": "Ամեն E-auto մեքենա նվազագույնի է հասցնում իր ազդեցությունը ողջ կյանքի ցիկլում՝ վերականգնված նյութերից մինչև մարտկոցի վերամշակման ծրագրեր։",
+          "en": "Every E-auto vehicle minimizes its footprint across its full life cycle, from recycled materials to battery recycling programs."
         }
       }
     ],
@@ -43,8 +43,8 @@
     "intro": {
       "heading": { "hy": "Կառուցելով միասին", "en": "Building together" },
       "body": {
-        "hy": "Veylor-ի յուրաքանչյուր մեքենայի հետևում կանգնած է գործընկերների ցանց, որոնք բերում են խորը փորձառություն մարտկոցի տեխնոլոգիաներից մինչև ինքնավար կառավարման ծրագրաշար։",
-        "en": "Behind every Veylor vehicle stands a network of partners bringing deep expertise, from battery technology to autonomous-driving software."
+        "hy": "E-auto-ի յուրաքանչյուր մեքենայի հետևում կանգնած է գործընկերների ցանց, որոնք բերում են խորը փորձառություն մարտկոցի տեխնոլոգիաներից մինչև ինքնավար կառավարման ծրագրաշար։",
+        "en": "Behind every E-auto vehicle stands a network of partners bringing deep expertise, from battery technology to autonomous-driving software."
       }
     },
     "list": [

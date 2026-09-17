@@ -1,5 +1,6 @@
 import { Locale } from "./types";
 import {
+  decodeHtmlEntities,
   GET_NEWS_LIST,
   GET_POST_BY_SLUG,
   mediaUrl,
@@ -30,40 +31,6 @@ export interface NewsItem extends NewsListItem {
 
 // No pagination UI yet -- fetch a generous batch instead of paging.
 const NEWS_LIST_LIMIT = 50;
-
-// WP's excerpt/title fields come back with entities encoded (wptexturize
-// turns straight quotes/ellipses into &#8217;/&hellip; etc.), so stripping
-// tags alone still leaves literal "&#8217;" in the text -- decode both
-// numeric (&#8217;, &#x2019;) and the small set of named entities WP
-// actually emits here.
-const NAMED_HTML_ENTITIES: Record<string, string> = {
-  amp: "&",
-  lt: "<",
-  gt: ">",
-  quot: '"',
-  apos: "'",
-  nbsp: " ",
-  hellip: "…",
-  mdash: "—",
-  ndash: "–",
-  lsquo: "‘",
-  rsquo: "’",
-  ldquo: "“",
-  rdquo: "”",
-};
-
-function decodeHtmlEntities(text: string): string {
-  return text.replace(/&(#x[0-9a-fA-F]+|#[0-9]+|[a-zA-Z]+);/g, (match, entity: string) => {
-    if (entity[0] === "#") {
-      const code =
-        entity[1] === "x" || entity[1] === "X"
-          ? parseInt(entity.slice(2), 16)
-          : parseInt(entity.slice(1), 10);
-      return Number.isNaN(code) ? match : String.fromCodePoint(code);
-    }
-    return NAMED_HTML_ENTITIES[entity] ?? match;
-  });
-}
 
 function stripHtml(html: string): string | null {
   const text = decodeHtmlEntities(html.replace(/<[^>]+>/g, "")).trim();

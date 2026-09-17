@@ -16,13 +16,13 @@ const ADDRESS: Record<Locale, string> = {
 };
 
 const LEGAL_LINE: Record<Locale, string> = {
-  hy: "© 2026 Veylor Motors։ Բոլոր իրավունքները պաշտպանված են։",
-  en: "© 2026 Veylor Motors. All rights reserved.",
+  hy: "© 2026 E-auto։ Բոլոր իրավունքները պաշտպանված են։",
+  en: "© 2026 E-auto. All rights reserved.",
 };
 
 export async function getSiteConfig(locale: Locale): Promise<SiteConfig> {
   return {
-    siteName: "Veylor",
+    siteName: "E-auto",
     contactEmail: "info@e-auto.am",
     phones: ["+374 10 330 330", "+374 91 330 330"],
     address: resolveLocalizedText(ADDRESS, locale),

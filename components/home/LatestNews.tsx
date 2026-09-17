@@ -1,4 +1,5 @@
 import { LatestPost } from "@/lib/data/latestPosts";
+import { Link } from "@/i18n/navigation";
 
 interface LatestNewsProps {
   posts: LatestPost[];
@@ -6,14 +7,6 @@ interface LatestNewsProps {
   newsTitle: string | null;
 }
 
-/**
- * Title-only card grid of the latest 4 real WP posts (see
- * lib/data/latestPosts.ts -- currently backed by mock data since no real
- * posts exist yet). No image/link per current scope: the mock fixture's
- * slug doesn't correspond to a real route, and linking to the existing
- * ACF-"news"-backed /news/[id] route would point at the wrong content
- * type, so these render as plain non-interactive cards for now.
- */
 export function LatestNews({ posts, newsTitle }: LatestNewsProps) {
   if (posts.length === 0) return null;
 
@@ -25,9 +18,15 @@ export function LatestNews({ posts, newsTitle }: LatestNewsProps) {
         )}
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           {posts.map((post) => (
-            <div key={post.id} className="rounded-2xl bg-white p-6">
-              <h3 className="font-display text-lg font-semibold leading-snug">{post.title}</h3>
-            </div>
+            <Link
+              key={post.id}
+              href={`/news/${post.slug}`}
+              className="group block rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <h3 className="font-display text-lg font-semibold leading-snug group-hover:text-brand-blue">
+                {post.title}
+              </h3>
+            </Link>
           ))}
         </div>
       </div>
