@@ -486,6 +486,64 @@ export const GET_LATEST_POSTS = /* GraphQL */ `
   }
 `;
 
+// New (News list page) -- confirmed working against the live backend.
+// Richer than GET_LATEST_POSTS (adds excerpt/featuredImage for the news
+// grid's cards) -- kept as a separate query rather than widening
+// GET_LATEST_POSTS, since that one is also used by the Home page's
+// lightweight "latest news" strip and shouldn't grow heavier for it. No
+// pagination/categories: `first` just caps how many posts come back.
+export const GET_NEWS_LIST = /* GraphQL */ `
+  query GetNewsList($language: LanguageCodeFilterEnum!, $first: Int!) {
+    posts(where: { language: $language }, first: $first) {
+      nodes {
+        id
+        slug
+        title
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
+// New (News detail page) -- confirmed working against the live backend.
+// Fixed-slug lookup (`post(id: $slug, idType: SLUG)`), translation
+// resolution via `translations[]` -- same convention as GET_MODEL_BY_SLUG/
+// GET_ABOUT_PAGE, never hardcode which locale a given slug belongs to.
+export const GET_POST_BY_SLUG = /* GraphQL */ `
+  query GetPostBySlug($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      id
+      slug
+      title
+      date
+      excerpt
+      content
+      language {
+        code
+      }
+      translations {
+        ... on Post {
+          slug
+          language {
+            code
+          }
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
+  }
+`;
+
 // --- Raw response shapes (field-for-field with the queries above) ---------
 
 export interface WpModelsByLocaleResponse {
@@ -674,6 +732,33 @@ export interface WpLatestPostsResponse {
       date: string;
     }[];
   };
+}
+
+export interface WpNewsListResponse {
+  posts: {
+    nodes: {
+      id: string;
+      slug: string;
+      title: string;
+      date: string;
+      excerpt: string | null;
+      featuredImage: WpMediaNode | null;
+    }[];
+  };
+}
+
+export interface WpPostBySlugResponse {
+  post: {
+    id: string;
+    slug: string;
+    title: string;
+    date: string;
+    excerpt: string | null;
+    content: string | null;
+    language: { code: string };
+    translations: { slug: string; language: { code: string } }[];
+    featuredImage: WpMediaNode | null;
+  } | null;
 }
 
 /** `{ node: { sourceUrl } } | null` -> `string | null` */

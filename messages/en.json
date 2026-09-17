@@ -79,9 +79,7 @@
   },
   "news": {
     "pageTitle": "News",
-    "featuredTitle": "Featured news",
-    "filterAll": "All",
-    "empty": "No news items in this category.",
+    "empty": "No news yet.",
     "publishedOn": "Published on"
   },
   "contact": {
