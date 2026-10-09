@@ -7,7 +7,9 @@
  * paste of unrelated markup), so strip the genuinely dangerous bits rather
  * than trusting it blindly.
  */
-export function sanitizeHtml(html: string): string {
+export function sanitizeHtml(html: string | null | undefined): string {
+  if (!html) return "";
+
   return html
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
