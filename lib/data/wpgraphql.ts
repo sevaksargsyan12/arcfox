@@ -104,11 +104,7 @@ export const GET_MODELS_WITH_COLORS_SPECS = /* GraphQL */ `
                 colorLabel
                 swatchHex
                 sectionBackgroundColor
-                spinFrames {
-                  nodes {
-                    sourceUrl
-                  }
-                }
+                spinFrames(first: 100) { nodes { sourceUrl } }
               }
               specs {
                 label
@@ -178,11 +174,7 @@ export const GET_MODEL_BY_SLUG = /* GraphQL */ `
               colorLabel
               swatchHex
               sectionBackgroundColor
-              spinFrames {
-                nodes {
-                  sourceUrl
-                }
-              }
+              spinFrames(first: 100) { nodes { sourceUrl } }
             }
             specs {
               label
