@@ -38,7 +38,7 @@ export function Video({ videoUrl, posterUrl }: VideoSection) {
                 <video src={videoUrl} className="h-full w-full object-cover" muted preload="metadata" />
               )}
               <span className="absolute inset-0 flex items-center justify-center">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 transition-transform group-hover:scale-110">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full  cursor-pointer opacity-50 hover:opacity-80 bg-white/90 transition-transform group-hover:scale-110">
                   <Play className="ml-1 text-ink" size={24} fill="currentColor" />
                 </span>
               </span>

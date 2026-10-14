@@ -188,7 +188,11 @@ export const GET_MODEL_BY_SLUG = /* GraphQL */ `
                 mediaItemUrl
               }
             }
-            posterImage
+            posterImage {
+              node {
+                sourceUrl
+              }
+            }
           }
 
           ... on ModelPageBuilderPageBuilderExteriorLayout {
@@ -601,7 +605,7 @@ export interface WpPageBuilderRaw {
   specs?: { label: string; value: string }[];
   // Video
   videoFile?: WpVideoMediaNode | null;
-  posterImage?: string | null;
+  posterImage?: WpMediaNode | null;
   // Exterior
   headingOnImage?: string | null;
   metrics?: { label: string; value: string }[] | null;

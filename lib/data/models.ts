@@ -131,7 +131,7 @@ export function normalizeSection(raw: WpPageBuilderRaw): PageBuilderSection | nu
     case "ModelPageBuilderPageBuilderVideoLayout": {
       const videoUrl = videoMediaUrl(raw.videoFile);
       if (!videoUrl) return null;
-      return { type: "video", videoUrl, posterUrl: raw.posterImage ?? null };
+      return { type: "video", videoUrl, posterUrl: mediaUrl(raw.posterImage) };
     }
 
     case "ModelPageBuilderPageBuilderExteriorLayout": {
